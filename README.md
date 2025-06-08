@@ -1,2 +1,2 @@
-# mm-simulator
-先手獲得率検証
+# mm-tools
+
