@@ -1,0 +1,83 @@
+body {
+  margin: 0;
+}
+
+.row.center-align-vertical {
+  display: flex;
+  align-items: center;
+}
+
+.custom-header {
+  background-color: #bfbfbf;
+}
+
+.custom-footer {
+  background-color: #bfbfbf;
+  height: 100px;
+}
+
+.brand-logo-text {
+  color: #000000;
+}
+
+#group-label {
+  font-size: 1.8em;
+}
+
+.collection-header {
+  color: green;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+}
+
+.rankcell-rank {
+  color: black;
+  font-weight: bold;
+  width: 20px;
+}
+
+.rankcell-world {
+  color: black;
+  font-weight: bold;
+  width: 40px;
+}
+
+.rankcell-guildname {
+  color: black;
+  font-size: 1.0em;
+  width: 160px;
+}
+
+.rankcell-bp {
+  color: black;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 1.0em;
+  text-align: right;
+  margin-left: auto;
+  font-weight: bold;
+}
+
+.rankcell-row {
+  display: flex;
+  flex-direction: row;
+  /*background-color: rgb(200, 200, 200);*/
+  align-items: center;
+  gap: 16px;
+}
+
+.scroll-container {
+  width: 100%;
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding-bottom: 1rem;
+}
+
+.collection {
+  min-width: 300px;
+  flex-shrink: 0;
+}
+
