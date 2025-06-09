@@ -18,10 +18,15 @@ body {
 
 .brand-logo-text {
   color: #000000;
+  white-space: nowrap;
+}
+
+.number_input_label {
+  white-space: nowrap;
 }
 
 #group-label {
-  font-size: 1.8em;
+  font-size: 1.2em;
 }
 
 .collection-header {
