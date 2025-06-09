@@ -123,15 +123,14 @@ const loadRanking = async () => {
 };
 
 const createRankingCell = (container, rank, worldId, guildName, bp) => {
-  let clone = rankingCellTemplate.content.cloneNode(true);
-  clone.querySelector('.rankcell-rank').innerHTML = `${rank}`;
-  clone.querySelector('.rankcell-world').innerHTML = `${serverMap[Math.floor(worldId / 1000)]}${worldId % 1000}`;
-  clone.querySelector('.rankcell-guildname').innerHTML = guildName;
-  clone.querySelector('.rankcell-bp').innerHTML = Number(bp).toLocaleString();
-  container.appendChild(clone);
-
+  const clone = rankingCellTemplate.content.cloneNode(true);
   const li = clone.querySelector('li');
+  li.querySelector('.rankcell-rank').innerHTML = `${rank}`;
+  li.querySelector('.rankcell-world').innerHTML = `${serverMap[Math.floor(worldId / 1000)]}${worldId % 1000}`;
+  li.querySelector('.rankcell-guildname').innerHTML = guildName;
+  li.querySelector('.rankcell-bp').innerHTML = Number(bp).toLocaleString();
   rankingCellList.push(li);
+  container.appendChild(clone);
 };
 
 const clearRankingCells = () => {
