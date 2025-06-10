@@ -3,8 +3,6 @@ body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
-  background-color: #303133;
-  /*style="background-color: #303133; color: #fff;"*/
 }
 
 .row.center-align-vertical {
