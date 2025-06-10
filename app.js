@@ -3,9 +3,9 @@
 const API_URL = "https://api.mentemori.icu";
 const WORLD_ID_KEY = "world_id";
 
-const rankingCellContainer1 = document.querySelector('#ranking-cells-1');
-const rankingCellContainer2 = document.querySelector('#ranking-cells-2');
-const rankingCellContainer3 = document.querySelector('#ranking-cells-3');
+const rankingCellContainer1 = $('#ranking-cells-1');
+const rankingCellContainer2 = $('#ranking-cells-2');
+const rankingCellContainer3 = $('#ranking-cells-3');
 const rankingCellTemplate = document.querySelector('#ranking-cell');
 const worldIdInputField = $('#number_input');
 const groupLabel = $('#group-label')
@@ -63,8 +63,6 @@ const loadWorld = async () => {
 
 const loadRanking = async () => {
   try {
-    clearRankingCells();
-
     const group = groupMap[groupId];
     if (group == undefined){
       return;
@@ -87,7 +85,8 @@ const loadRanking = async () => {
       }));
     });
     bpList.sort((a, b) => b.bp - a.bp);
-    console.log(bpList);
+
+    clearRankingCells();
 
     for (var index = 0; index < 16; ++index){
       if (bpList.length <= index){
@@ -129,8 +128,11 @@ const createRankingCell = (container, rank, worldId, guildName, bp) => {
   li.querySelector('.rankcell-world').innerHTML = `${serverMap[Math.floor(worldId / 1000)]}${worldId % 1000}`;
   li.querySelector('.rankcell-guildname').innerHTML = guildName;
   li.querySelector('.rankcell-bp').innerHTML = Number(bp).toLocaleString();
+  // li.addEventListener('click', () => {
+  //   alert(`${guildName}`);
+  // });
   rankingCellList.push(li);
-  container.appendChild(clone);
+  container.append(clone);
 };
 
 const clearRankingCells = () => {
