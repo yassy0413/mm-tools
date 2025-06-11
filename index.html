@@ -18,10 +18,21 @@
 <body style="background-color: #303133; color: #fff;">
 
   <div class="container center custom-header">
-    <span class="brand-logo-text">Group Guild Bp Ranking</span>
+    <span id="header-title" class="brand-logo-text">Group Guild Bp Ranking</span>
   </div>
 
-  <div class="scroll-container">
+  <div id="content-explain" class="container center">
+    <div id="explain">
+      ワールド番号を入力して、その右の更新ボタンをおすと<br>
+      対象のワールドが所属するグループのギルドが<br>
+      戦力降順で４８個(16x3)表示されます。<br>
+      <br>
+      ギルドセルをタップすると、何らかのランキングにエントリーしている<br>
+      プレーヤーのリストが表示されます。<br>
+    </div>
+  </div>
+
+  <div id="content-rankings" class="scroll-container">
     <div class="container custom-content">
       <div class="row center-align-vertical">
 
@@ -41,6 +52,17 @@
         </ul>
 
       </div>
+    </div>
+  </div>
+
+  <div id="content-bplist" class="container custom-content">
+    <div class="row center-align-vertical">
+
+      <ul class="collection with-header ranking-cell">
+        <li id="guild-name" class="collection-header"><h5>GuildName</h5></li>
+        <div id="bp-cells"></div>
+      </ul>
+
     </div>
   </div>
 
@@ -68,7 +90,7 @@
       <!-- Button -->
       <div class="col s3 m3">
         <button class="btn waves-effect waves-light" type="submit" name="action" id="Submit">
-          <i class="material-icons">refresh</i>
+          <i class="material-icons"></i>
         </button>
       </div>
     </div>
@@ -77,10 +99,10 @@
   <template id="ranking-cell">
     <li class="collection-item rankcell-root">
       <div class="rankcell-row">
-        <div class="rankcell-rank">123</div>
-        <div class="rankcell-world">jp20</div>
-        <div class="rankcell-guildname">GuildName</div>
-        <div class="rankcell-bp">12,123,456,789</div>
+        <div class="rankcell-rank"></div>
+        <div class="rankcell-world"></div>
+        <div class="rankcell-guildname"></div>
+        <div class="rankcell-bp"></div>
       </div>
     </li>
   </template>

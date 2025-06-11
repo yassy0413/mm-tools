@@ -6,16 +6,26 @@ const WORLD_ID_KEY = "world_id";
 const rankingCellContainer1 = $('#ranking-cells-1');
 const rankingCellContainer2 = $('#ranking-cells-2');
 const rankingCellContainer3 = $('#ranking-cells-3');
+const bpCellContainer = $('#bp-cells');
+const submitButtonTextElement = $('#Submit i.material-icons');
+const headerTitleElement = $('#header-title');
+const guildNameElement = $('#guild-name');
 const rankingCellTemplate = document.querySelector('#ranking-cell');
 const worldIdInputField = $('#number_input');
 const groupLabel = $('#group-label')
+const contentExplain = $('#content-explain');
+const contentRankings = $('#content-rankings');
+const contentBpList = $('#content-bplist');
 
 let rankingCellList = [];
+let bpCellList = [];
 let groups = {};
 let worlds = {};
 let serverMap = {};
 let groupMap = {};
 let worldMap = {};
+let guildMap = {};
+let guildWorldIdSet = new Set();
 let regionId = 1;
 let groupId = 0;
 let worldId = 0;
@@ -56,12 +66,14 @@ const loadWorld = async () => {
       }
     }
 
+    submitButtonTextElement.text('refresh');
+
   } catch (error) {
     console.error(error);
   }
 };
 
-const loadRanking = async () => {
+const loadGuildRanking = async () => {
   try {
     const group = groupMap[groupId];
     if (group == undefined){
@@ -86,7 +98,7 @@ const loadRanking = async () => {
     });
     bpList.sort((a, b) => b.bp - a.bp);
 
-    clearRankingCells();
+    clearElementList(rankingCellList);
 
     for (var index = 0; index < 16; ++index){
       if (bpList.length <= index){
@@ -94,7 +106,7 @@ const loadRanking = async () => {
       }
 
       var v = bpList[index];
-      createRankingCell(rankingCellContainer1, index + 1, v.world_id, v.name, v.bp);
+      createGuildCell(rankingCellContainer1, index + 1, v.world_id, v.name, v.id, v.bp);
     }
 
     for (var index = 16; index < 32; ++index){
@@ -103,7 +115,7 @@ const loadRanking = async () => {
       }
 
       var v = bpList[index];
-      createRankingCell(rankingCellContainer2, index + 1, v.world_id, v.name, v.bp);
+      createGuildCell(rankingCellContainer2, index + 1, v.world_id, v.name, v.id, v.bp);
     }
 
     for (var index = 32; index < 48; ++index){
@@ -112,8 +124,11 @@ const loadRanking = async () => {
       }
 
       var v = bpList[index];
-      createRankingCell(rankingCellContainer3, index + 1, v.world_id, v.name, v.bp);
+      createGuildCell(rankingCellContainer3, index + 1, v.world_id, v.name, v.id, v.bp);
     }
+
+    contentExplain.hide();
+    contentRankings.show();
     
 
   } catch (error) {
@@ -121,27 +136,73 @@ const loadRanking = async () => {
   }
 };
 
-const createRankingCell = (container, rank, worldId, guildName, bp) => {
+const loadPlayerRanking = async (worldId, guildId, guildName) => {
+
+  if (!guildWorldIdSet.has(worldId)){
+    const response = await fetch(`${API_URL}/${worldId}/player_ranking/latest`);
+    const jsonData = await response.json();
+    const players = Object.values(jsonData.data.player_info).sort((a, b) => b.bp - a.bp);
+
+    Object.assign(guildMap, players.reduce((groups, player) => {
+      const guildId = player.guild_id;
+      if (!groups[guildId]) {
+        groups[guildId] = [];
+      }
+      groups[guildId].push(player);
+      return groups;
+    }, {}));
+
+    guildWorldIdSet.add(worldId);
+  }
+
+  clearElementList(bpCellList);
+
+  let count = 0;
+  for (const player of guildMap[guildId]){
+    createPlayerCell(bpCellContainer, ++count, player.name, player.bp);
+  }
+
+  guildNameElement.text(guildName);
+
+  //
+  contentRankings.hide();
+  contentBpList.show();
+  submitButtonTextElement.text('close');
+  headerTitleElement.text('Players that appeared in rankings');
+};
+
+const clearElementList = (list) => {
+  for (const cell of list) {
+    if (cell.parentNode) {
+      cell.parentNode.removeChild(cell);
+    }
+  }
+  list.length = 0;
+};
+
+const createGuildCell = (container, rank, worldId, guildName, guildId, bp) => {
   const clone = rankingCellTemplate.content.cloneNode(true);
   const li = clone.querySelector('li');
   li.querySelector('.rankcell-rank').innerHTML = `${rank}`;
   li.querySelector('.rankcell-world').innerHTML = `${serverMap[Math.floor(worldId / 1000)]}${worldId % 1000}`;
   li.querySelector('.rankcell-guildname').innerHTML = guildName;
   li.querySelector('.rankcell-bp').innerHTML = Number(bp).toLocaleString();
-  // li.addEventListener('click', () => {
-  //   alert(`${guildName}`);
-  // });
+  li.addEventListener('click', () => {
+    loadPlayerRanking(worldId, guildId, guildName);
+  });
   rankingCellList.push(li);
   container.append(clone);
 };
 
-const clearRankingCells = () => {
-  for (const cell of rankingCellList) {
-    if (cell.parentNode) {
-      cell.parentNode.removeChild(cell);
-    }
-  }
-  rankingCellList.length = 0;
+const createPlayerCell = (container, rank, playerName, bp) => {
+  const clone = rankingCellTemplate.content.cloneNode(true);
+  const li = clone.querySelector('li');
+  li.querySelector('.rankcell-rank').innerHTML = `${rank}`;
+  li.querySelector('.rankcell-world').innerHTML = ``;
+  li.querySelector('.rankcell-guildname').innerHTML = playerName;
+  li.querySelector('.rankcell-bp').innerHTML = Number(bp).toLocaleString();
+  bpCellList.push(li);
+  container.append(clone);
 };
 
 const updateGroupLabel = () => {
@@ -159,6 +220,11 @@ const updateGroupLabel = () => {
 };
 
 $(document).ready(async () => {
+  contentExplain.hide();
+  contentExplain.fadeIn(500);
+  contentRankings.hide();
+  contentBpList.hide();
+
   M.AutoInit();
   await loadWorld();
 
@@ -182,8 +248,15 @@ $(document).ready(async () => {
 
   // Submit button
   $('#Submit').on('click', function(event) {
-    localStorage.setItem(WORLD_ID_KEY, worldId);
-    loadRanking();
+    if (submitButtonTextElement.text() == 'close'){
+      contentBpList.hide();
+      contentRankings.show();
+      submitButtonTextElement.text('refresh');
+      headerTitleElement.text('Group Guild Bp Ranking');
+    }else{
+      localStorage.setItem(WORLD_ID_KEY, worldId);
+      loadGuildRanking();
+    }
   });
 
   // Dropdown Server
