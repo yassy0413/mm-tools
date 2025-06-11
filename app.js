@@ -169,7 +169,7 @@ $(document).ready(async () => {
     contentRankings.hide();
     contentBpList.show();
     submitButtonTextElement.text('close');
-    headerTitleElement.text('Players that appeared in rankings');
+    headerTitleElement.text('何らかのランキングにエントリーしているプレーヤーのリスト');
   };
 
   const clearElementList = (list) => {
