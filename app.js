@@ -262,7 +262,7 @@ $(document).ready(async () => {
             ui.contentRankings.hide();
             ui.contentBpList.show();
             ui.submitButtonLabel.text('close');
-            ui.headerTitleLabel.text('何らかのランキングにエントリーしているプレーヤーのリスト');
+            ui.headerTitleLabel.html('何らかのランキングにエントリー<br>しているプレーヤーのリスト');
           });
         }
       };
