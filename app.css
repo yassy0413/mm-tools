@@ -111,3 +111,15 @@ body {
   margin-top: 60px;
   margin-bottom: 60px;
 }
+
+.explain-red-text {
+  color: #cc0000;
+  font-size: 1.1em;
+  font-weight: bold;
+}
+
+.explain-green-text {
+  color: #009900;
+  font-size: 1.1em;
+  font-weight: bold;
+}
