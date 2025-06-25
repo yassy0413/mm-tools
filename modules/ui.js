@@ -17,10 +17,13 @@ export class UI {
   playerRankingCellList = [];
 
   constructor() {
-    M.AutoInit();
     this.contentExplain.hide();
     this.contentBpList.hide();
     this.contentRankings.hide();
+
+    M.AutoInit();
+
+    $("#content-root").show();
     this.contentExplain.fadeIn(500);
   }
 

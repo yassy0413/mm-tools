@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-.hide {
+#content-root {
   display: none;
 }
 
@@ -114,18 +114,18 @@ body {
 }
 
 #explain {
-  margin-top: 60px;
-  margin-bottom: 60px;
+  padding: 24px;
+  font-size: 0.9em;
 }
 
 .explain-red-text {
   color: #cc0000;
-  font-size: 1.1em;
+  font-size: 1.0em;
   font-weight: bold;
 }
 
 .explain-green-text {
   color: #009900;
-  font-size: 1.1em;
+  font-size: 1.0em;
   font-weight: bold;
 }
