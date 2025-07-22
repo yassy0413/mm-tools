@@ -10,6 +10,7 @@ export class UI {
   guildNameLabel = $("#guild-name");
   groupLabel = $("#group-label");
   contentExplain = $("#content-explain");
+  contentLinks = $("#content-links");
   contentRankings = $("#content-rankings");
   contentBpList = $("#content-bplist");
 
@@ -18,6 +19,7 @@ export class UI {
 
   constructor() {
     this.contentExplain.hide();
+    this.contentLinks.hide();
     this.contentBpList.hide();
     this.contentRankings.hide();
 
@@ -25,6 +27,7 @@ export class UI {
 
     $("#content-root").show();
     this.contentExplain.fadeIn(500);
+    this.contentLinks.fadeIn(500);
   }
 
   updateGroupLabel(groupId) {

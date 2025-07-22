@@ -106,8 +106,8 @@ body {
 
 .rankcell-bp {
   color: black;
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 1.0em;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 1em;
   text-align: right;
   margin-left: auto;
   font-weight: bold;
@@ -120,12 +120,38 @@ body {
 
 .explain-red-text {
   color: #cc0000;
-  font-size: 1.0em;
+  font-size: 1em;
   font-weight: bold;
 }
 
 .explain-green-text {
   color: #009900;
-  font-size: 1.0em;
+  font-size: 1em;
   font-weight: bold;
+}
+
+#content-links {
+  margin-top: 60px;
+  margin-bottom: 60px;
+  border-top: 1px solid rgba(0, 0, 0, 0.14);
+}
+
+.youtube-iframe {
+  width: 90%;
+  aspect-ratio: 16 / 9;
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+@media (min-width: 768px) {
+  .youtube-iframe {
+    width: 50%;
+  }
+}
+
+.section-title {
+  margin-top: 10px;
+  margin-bottom: 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
 }

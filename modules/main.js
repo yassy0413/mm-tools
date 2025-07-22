@@ -92,11 +92,12 @@ $(document).ready(async () => {
       createGuildRanking(ui.guildRankingCellContainer3, 32);
 
       ui.contentExplain.hide();
+      ui.contentLinks.hide();
       ui.contentRankings.show();
     }
   });
 
-  // // DropDown Region
+  // DropDown Region
   const $dropdown = $("#dropdown-servers");
   $dropdown.empty();
   for (const key in data.regionMap) {
