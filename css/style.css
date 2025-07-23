@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+.hidden {
+  display: none;
+}
+
 #content-root {
   display: none;
 }
@@ -16,23 +20,26 @@ body {
   align-items: center;
 }
 
-.custom-header {
-  background-color: #bfbfbf;
-  width: 100%;
-  height: 30px;
+.custom-toolbar {
+  margin-top: 16px;
+  margin-bottom: 16px;
+  height: 70px;
+}
+
+.header-title {
+  height: 40px;
 
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.custom-toolbar {
-  height: 170px;
+#header-title-a {
+  font-size: 20px;
 }
 
-#header-title {
-  font-size: clamp(16px, 3vw, 32px);
-  height: 60px;
+#header-title-b {
+  font-size: clamp(12px, 3vw, 20px);
 }
 
 .custom-content {
@@ -118,6 +125,12 @@ body {
   font-size: 0.9em;
 }
 
+@media (min-width: 768px) {
+  #explain {
+    font-size: 1.4em;
+  }
+}
+
 .explain-red-text {
   color: #cc0000;
   font-size: 1em;
@@ -132,15 +145,15 @@ body {
 
 #content-links {
   margin-top: 60px;
-  margin-bottom: 60px;
+  margin-bottom: 100px;
   border-top: 1px solid rgba(0, 0, 0, 0.14);
 }
 
 .youtube-iframe {
   width: 90%;
   aspect-ratio: 16 / 9;
-  margin-top: 20px;
-  margin-bottom: 40px;
+  display: block;
+  margin: 20px auto 40px auto;
 }
 
 @media (min-width: 768px) {

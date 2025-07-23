@@ -32,7 +32,8 @@ $(document).ready(async () => {
       ui.contentBpList.hide();
       ui.contentRankings.show();
       ui.submitButtonLabel.text("refresh");
-      ui.headerTitleLabel.text("Group Guild Bp Ranking");
+      ui.headerTitleLabelA.show();
+      ui.headerTitleLabelB.hide();
     } else {
       localStorage.setItem(WORLD_ID_KEY, data.worldId);
       const bpList = await data.loadGuildRanking();
@@ -78,9 +79,8 @@ $(document).ready(async () => {
               ui.contentRankings.hide();
               ui.contentBpList.show();
               ui.submitButtonLabel.text("close");
-              ui.headerTitleLabel.html(
-                "何らかのランキングにエントリー<br>しているプレーヤーのリスト"
-              );
+              ui.headerTitleLabelA.hide();
+              ui.headerTitleLabelB.show();
             }
           );
         }

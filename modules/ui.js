@@ -6,7 +6,8 @@ export class UI {
   playerRankingCellContainer = $("#bp-cells");
   worldIdInputField = $("#number_input");
   submitButtonLabel = $("#Submit i.material-icons");
-  headerTitleLabel = $("#header-title");
+  headerTitleLabelA = $("#header-title-a");
+  headerTitleLabelB = $("#header-title-b");
   guildNameLabel = $("#guild-name");
   groupLabel = $("#group-label");
   contentExplain = $("#content-explain");
@@ -22,6 +23,8 @@ export class UI {
     this.contentLinks.hide();
     this.contentBpList.hide();
     this.contentRankings.hide();
+    this.headerTitleLabelA.show();
+    this.headerTitleLabelB.hide();
 
     M.AutoInit();
 
