@@ -86,9 +86,16 @@ export class Data {
   async loadPlayerRanking(worldId, guildId) {
     if (!this.guildWorldIdSet.has(worldId)) {
       const jsonData = await Api.Request(`${worldId}/player_ranking/latest`);
-      const players = Object.values(jsonData.data.player_info).sort(
-        (a, b) => b.bp - a.bp
-      );
+
+      const bpRankings = jsonData.data.rankings.bp ?? [];
+      const playerInfoMap = jsonData.data.player_info ?? {};
+
+      const players = bpRankings.map((x) => {
+        return {
+          ...x,
+          ...(playerInfoMap[String(x.id)] || {}),
+        };
+      });
 
       Object.assign(
         this.guildMap,
@@ -103,6 +110,10 @@ export class Data {
       );
 
       this.guildWorldIdSet.add(worldId);
+    }
+
+    if (!this.guildMap[guildId]) {
+      return null;
     }
 
     return this.guildMap[guildId];

@@ -64,16 +64,18 @@ $(document).ready(async () => {
 
               ui.clearElementList(ui.playerRankingCellList);
 
-              let count = 0;
-              for (const player of playerBpList) {
-                ui.renderPlayerCell(
-                  ui.playerRankingCellContainer,
-                  ++count,
-                  player.name,
-                  player.bp
-                );
+              if (playerBpList != null){
+                let count = 0;
+                for (const player of playerBpList) {
+                  ui.renderPlayerCell(
+                    ui.playerRankingCellContainer,
+                    ++count,
+                    player.name,
+                    player.bp
+                  );
+                }
               }
-
+              
               ui.guildNameLabel.text(v.name);
 
               ui.contentRankings.hide();

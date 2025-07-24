@@ -4,6 +4,7 @@ export class Api {
   static async Request(path) {
     try {
       const response = await fetch(`${this.API_URL}/${path}`);
+      //console.log(`${this.API_URL}/${path}`);
 
       if (!response.ok) {
         //todo: error handling
