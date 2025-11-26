@@ -19,7 +19,7 @@ $(document).ready(async () => {
   });
 
   const value = localStorage.getItem(WORLD_ID_KEY);
-  if (value != undefined) {
+  if (value !== undefined) {
     data.setWorldId(parseInt(value, 10));
     ui.worldIdInputField.val(value);
     ui.worldIdInputField.siblings("label").addClass("active");
@@ -28,7 +28,7 @@ $(document).ready(async () => {
 
   // // Submit button
   $("#Submit").on("click", async (event) => {
-    if (ui.submitButtonLabel.text() == "close") {
+    if (ui.submitButtonLabel.text() === "close") {
       ui.contentBpList.hide();
       ui.contentRankings.show();
       ui.submitButtonLabel.text("refresh");

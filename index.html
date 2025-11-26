@@ -2,147 +2,156 @@
 <html lang="ja">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="icon" href="./favicon.ico" type="image/x-icon">
+  <title>MM Group Guild Bp Ranking</title>
   <!-- <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-Control" content="no-cache"> -->
 
   <!--Import Google Icon Font-->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
   <!--Import materialize.css-->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"/>
   <!--Import application css-->
-  <link type="text/css" rel="stylesheet" href="css/style.css?v=1.02" />
+  <link type="text/css" rel="stylesheet" href="css/style.css?v=1.02"/>
 </head>
 
 <body style="background-color: #eee; color: #fff">
 
-  <!-- Header -->
-  <div class="header-title grey lighten-4 z-depth-2 center">
+<!-- Header -->
+<div class="header-title grey lighten-4 z-depth-2 center">
     <span class="black-text" id="header-title-a">
       Group Guild Bp Ranking
     </span>
-    <span class="black-text hidden" id="header-title-b">
+  <span class="black-text hidden" id="header-title-b">
       <b><span style="color: #f00;">戦闘力ランキング</span></b>にエントリーしているプレーヤーのリスト
     </span>
-  </div>
+</div>
 
-  <!-- ToolBox -->
-  <div class="container grey lighten-4 z-depth-2 custom-toolbar">
-    <div class="row center-align-vertical">
-      <!-- Group Id -->
-      <div class="col s3">
-        <span class="black-text" id="group-label"></span>
-      </div>
-
-      <!-- Dropdown -->
-      <div class="col s3">
-        <ul id="dropdown-servers" class="dropdown-content"></ul>
-        <a class="btn dropdown-trigger" href="#!" data-target="dropdown-servers" id="dropdownButton">
-          jp<i class="material-icons right">arrow_drop_down</i>
-        </a>
-      </div>
-
-      <!-- Input Field -->
-      <div class="input-field col s4">
-        <input id="number_input" type="number" class="validate" />
-        <label class="blue-grey-text text-darken-3 number_input_label" for="number_input">ワールド番号を入力...</label>
-      </div>
-
-      <!-- Button -->
-      <div class="col s2">
-        <button class="btn waves-effect waves-light" type="submit" name="action" id="Submit">
-          <i class="material-icons"></i>
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <section id="content-root">
-    <div id="content-explain" class="container center z-depth-3">
-      <div id="explain" class="black-text">
-        <span class="explain-red-text">ワールド番号</span>を入力して、
-        <span class="explain-red-text">その右の更新ボタン</span>をおすと<br />
-        対象のワールドが所属するグループのギルドが<br />
-        戦力降順で４８個(16x3)表示されます。<br />
-        <br />
-        ギルドセルをタップすると、<br />
-        <b><span class="explain-green-text">戦闘力ランキングにエントリー</span></b>している<br />
-        <b><span class="explain-green-text">プレーヤーのリスト</span></b>が表示されます。<br />
-      </div>
+<!-- ToolBox -->
+<div class="container grey lighten-4 z-depth-2 custom-toolbar">
+  <div class="row center-align-vertical">
+    <!-- Group Id -->
+    <div class="col s3">
+      <span class="black-text" id="group-label"></span>
     </div>
 
-    <div id="content-links" class="center">
-      <div class="center black-text">
-        <h5 class="section-title">LINKS</h5>
-      </div>
-
-      <iframe class="youtube-iframe z-depth-2"
-        src="https://www.youtube.com/embed/videoseries?si=bxRKvKTPz6q_r5IE&amp;list=PLv9V6VF7SsQWPt5W-jEePL2g_WIIIMksq"
-        title="YouTube video player" frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
-      </iframe>
-      <a href="https://docs.google.com/spreadsheets/d/15bxBeoWfO4R1b1u5OlohpwCsZLmWEUOaXwrsT9h0eYg/edit?usp=sharing">
-        <img class="youtube-iframe z-depth-2" src="./images/rankings-sheet-button.png?v=1.0">
+    <!-- Dropdown -->
+    <div class="col s3">
+      <ul id="dropdown-servers" class="dropdown-content"></ul>
+      <a class="btn dropdown-trigger" href="#!" data-target="dropdown-servers" id="dropdownButton">
+        jp<i class="material-icons right">arrow_drop_down</i>
       </a>
     </div>
 
-    <div id="content-rankings" class="scroll-container">
-      <div class="container custom-content">
-        <div class="row center-align-vertical">
-          <ul class="collection with-header ranking-cell z-depth-1">
-            <li class="collection-header">
-              <h5>グランドマスター級</h5>
-            </li>
-            <div id="ranking-cells-1"></div>
-          </ul>
-
-          <ul class="collection with-header ranking-cell z-depth-1">
-            <li class="collection-header">
-              <h5>エキスパート級</h5>
-            </li>
-            <div id="ranking-cells-2"></div>
-          </ul>
-
-          <ul class="collection with-header ranking-cell z-depth-1">
-            <li class="collection-header">
-              <h5>エリート級</h5>
-            </li>
-            <div id="ranking-cells-3"></div>
-          </ul>
-        </div>
-      </div>
+    <!-- Input Field -->
+    <div class="input-field col s4">
+      <input id="number_input" type="number" class="validate"/>
+      <label class="blue-grey-text text-darken-3 number_input_label" for="number_input">ワールド番号を入力...</label>
     </div>
 
-    <div id="content-bplist" class="container custom-content-bp">
-      <ul class="collection with-header ranking-cell col s4 m4 z-depth-2">
-        <li id="guild-name" class="collection-header">
-          <h5>GuildName</h5>
-        </li>
-        <div id="bp-cells"></div>
-      </ul>
+    <!-- Button -->
+    <div class="col s2">
+      <button class="btn waves-effect waves-light" type="submit" name="action" id="Submit">
+        <i class="material-icons"></i>
+      </button>
     </div>
-  </section>
+  </div>
+</div>
 
-  <template id="ranking-cell">
-    <li class="collection-item rankcell-root">
-      <div class="rankcell-row">
-        <div class="rankcell-rank"></div>
-        <div class="rankcell-world"></div>
-        <div class="rankcell-guildname"></div>
-        <div class="rankcell-bp"></div>
+<section id="content-root">
+  <div id="content-explain" class="container center z-depth-3">
+    <div id="explain" class="black-text">
+      <span class="explain-red-text">ワールド番号</span>を入力して、
+      <span class="explain-red-text">その右の更新ボタン</span>をおすと<br/>
+      対象のワールドが所属するグループのギルドが<br/>
+      戦力降順で４８個(16x3)表示されます。<br/>
+      <br/>
+      ギルドセルをタップすると、<br/>
+      <b><span class="explain-green-text">戦闘力ランキングにエントリー</span></b>している<br/>
+      <b><span class="explain-green-text">プレーヤーのリスト</span></b>が表示されます。<br/>
+    </div>
+  </div>
+
+  <div id="content-links" class="center">
+    <div class="center black-text">
+      <h5 class="section-title">LINKS</h5>
+    </div>
+
+    <a
+      href="https://docs.google.com/spreadsheets/d/15bxBeoWfO4R1b1u5OlohpwCsZLmWEUOaXwrsT9h0eYg/edit?gid=1773042965#gid=1773042965"
+      target="_blank">
+      <img class="youtube-iframe z-depth-2" src="./images/link_weapon.png?v=1.0">
+    </a>
+
+    <a href="https://docs.google.com/spreadsheets/d/15bxBeoWfO4R1b1u5OlohpwCsZLmWEUOaXwrsT9h0eYg/edit?gid=0#gid=0"
+       target="_blank">
+      <img class="youtube-iframe z-depth-2" src="./images/link_bp_rank.png?v=1.0">
+    </a>
+
+    <iframe class="youtube-iframe z-depth-2"
+            src="https://www.youtube.com/embed/videoseries?si=bxRKvKTPz6q_r5IE&amp;list=PLv9V6VF7SsQWPt5W-jEePL2g_WIIIMksq"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+    </iframe>
+  </div>
+
+  <div id="content-rankings" class="scroll-container">
+    <div class="container custom-content">
+      <div class="row center-align-vertical">
+        <ul class="collection with-header ranking-cell z-depth-1">
+          <li class="collection-header">
+            <h5>グランドマスター級</h5>
+          </li>
+          <div id="ranking-cells-1"></div>
+        </ul>
+
+        <ul class="collection with-header ranking-cell z-depth-1">
+          <li class="collection-header">
+            <h5>エキスパート級</h5>
+          </li>
+          <div id="ranking-cells-2"></div>
+        </ul>
+
+        <ul class="collection with-header ranking-cell z-depth-1">
+          <li class="collection-header">
+            <h5>エリート級</h5>
+          </li>
+          <div id="ranking-cells-3"></div>
+        </ul>
       </div>
-    </li>
-  </template>
+    </div>
+  </div>
 
-  <!--JavaScript at end of body for optimized loading-->
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <script type="module" src="modules/main.js?v=1.02"></script>
+  <div id="content-bplist" class="container custom-content-bp">
+    <ul class="collection with-header ranking-cell col s4 m4 z-depth-2">
+      <li id="guild-name" class="collection-header">
+        <h5>GuildName</h5>
+      </li>
+      <div id="bp-cells"></div>
+    </ul>
+  </div>
+</section>
+
+<template id="ranking-cell">
+  <li class="collection-item rankcell-root">
+    <div class="rankcell-row">
+      <div class="rankcell-rank"></div>
+      <div class="rankcell-world"></div>
+      <div class="rankcell-guildname"></div>
+      <div class="rankcell-bp"></div>
+    </div>
+  </li>
+</template>
+
+<!--JavaScript at end of body for optimized loading-->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script type="module" src="modules/main.js?v=1.02"></script>
 </body>
 
 </html>
