@@ -19,15 +19,29 @@ $(document).ready(async () => {
     ui.updateGroupLabel(data.groupId);
   });
 
-  const value = localStorage.getItem(WORLD_ID_KEY);
-  if (value !== undefined) {
-    data.setWorldId(parseInt(value, 10));
-    ui.worldIdInputField.val(value);
-    ui.worldIdInputField.siblings("label").addClass("active");
-    ui.updateGroupLabel(data.groupId);
-  } else {
-    ui.updateGroupLabel(0);
-  }
+  let value = localStorage.getItem(WORLD_ID_KEY) || "1";
+  data.setWorldId(parseInt(value, 10));
+  ui.worldIdInputField.val(value);
+  ui.worldIdInputField.siblings("label").addClass("active");
+  ui.updateGroupLabel(data.groupId);
+
+  const sendContentLinkEvent = (linkId) => {
+    if (typeof gtag === "function") {
+      gtag("event", linkId);
+    }
+  };
+
+  ui.contentLinks.find("> div[id]").each(function () {
+    const linkId = this.id;
+
+    $(this).find("a").on("click", () => {
+      sendContentLinkEvent(linkId);
+    });
+
+    $(this).find("iframe").on("pointerdown", () => {
+      sendContentLinkEvent(linkId);
+    });
+  });
 
   // // Submit button
   $("#Submit").on("click", async (event) => {
@@ -49,6 +63,10 @@ $(document).ready(async () => {
         localStorage.setItem(WORLD_ID_KEY, data.worldId);
         const bpList = await data.loadGuildRanking();
 
+        gtag("event", "search_world", {
+          world_id: data.worldId,
+        });
+
         const createGuildRanking = (container, startIndex) => {
           for (var index = startIndex; index < startIndex + 16; ++index) {
             if (bpList.length <= index) {
@@ -56,46 +74,31 @@ $(document).ready(async () => {
             }
 
             const v = bpList[index];
-            const serverName = `${data.regionMap[Math.floor(v.world_id / 1000)]}${
-              v.world_id % 1000
-            }`;
-            ui.renderGuildCell(
-              container,
-              index + 1,
-              v.world_id,
-              v.name,
-              v.id,
-              v.bp,
-              serverName,
-              async () => {
-                const playerBpList = await data.loadPlayerRanking(
-                  v.world_id,
-                  v.id
-                );
+            const serverName = `${data.regionMap[Math.floor(v.world_id / 1000)]}${v.world_id % 1000}`;
+            ui.renderGuildCell(container, index + 1, v.world_id, v.name, v.id, v.bp, serverName, async () => {
+              const playerBpList = await data.loadPlayerRanking(v.world_id, v.id);
 
-                ui.clearElementList(ui.playerRankingCellList);
+              gtag("event", "select_guild", {
+                guild_name: v.name,
+              });
 
-                if (playerBpList != null){
-                  let count = 0;
-                  for (const player of playerBpList) {
-                    ui.renderPlayerCell(
-                      ui.playerRankingCellContainer,
-                      ++count,
-                      player.name,
-                      player.bp
-                    );
-                  }
+              ui.clearElementList(ui.playerRankingCellList);
+
+              if (playerBpList != null) {
+                let count = 0;
+                for (const player of playerBpList) {
+                  ui.renderPlayerCell(ui.playerRankingCellContainer, ++count, player.name, player.bp);
                 }
-                
-                ui.guildNameLabel.text(v.name);
-
-                ui.contentRankings.hide();
-                ui.contentBpList.show();
-                ui.submitButtonLabel.text("close");
-                ui.headerTitleLabelA.hide();
-                ui.headerTitleLabelB.show();
               }
-            );
+
+              ui.guildNameLabel.text(v.name);
+
+              ui.contentRankings.hide();
+              ui.contentBpList.show();
+              ui.submitButtonLabel.text("close");
+              ui.headerTitleLabelA.hide();
+              ui.headerTitleLabelB.show();
+            });
           }
         };
 
@@ -127,11 +130,7 @@ $(document).ready(async () => {
     const selectedText = $(this).text();
     $("#dropdownButton").contents().first()[0].nodeValue = selectedText;
 
-    data.setRegionId(
-      Object.keys(data.regionMap).find(
-        (key) => data.regionMap[key] === selectedText
-      )
-    );
+    data.setRegionId(Object.keys(data.regionMap).find((key) => data.regionMap[key] === selectedText));
     ui.updateGroupLabel(data.groupId);
   });
 });
