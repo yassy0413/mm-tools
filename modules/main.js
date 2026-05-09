@@ -8,6 +8,7 @@ $(document).ready(async () => {
 
   const data = new Data();
   const ui = new UI();
+  let isLoadingGuildRanking = false;
 
   await data.loadWorld();
   ui.submitButtonLabel.text("refresh");
@@ -24,6 +25,8 @@ $(document).ready(async () => {
     ui.worldIdInputField.val(value);
     ui.worldIdInputField.siblings("label").addClass("active");
     ui.updateGroupLabel(data.groupId);
+  } else {
+    ui.updateGroupLabel(0);
   }
 
   // // Submit button
@@ -35,67 +38,79 @@ $(document).ready(async () => {
       ui.headerTitleLabelA.show();
       ui.headerTitleLabelB.hide();
     } else {
-      localStorage.setItem(WORLD_ID_KEY, data.worldId);
-      const bpList = await data.loadGuildRanking();
+      if (isLoadingGuildRanking) {
+        return;
+      }
 
-      const createGuildRanking = (container, startIndex) => {
-        for (var index = startIndex; index < startIndex + 16; ++index) {
-          if (bpList.length <= index) {
-            break;
-          }
+      isLoadingGuildRanking = true;
+      ui.setSubmitButtonEnabled(false);
 
-          const v = bpList[index];
-          const serverName = `${data.regionMap[Math.floor(v.world_id / 1000)]}${
-            v.world_id % 1000
-          }`;
-          ui.renderGuildCell(
-            container,
-            index + 1,
-            v.world_id,
-            v.name,
-            v.id,
-            v.bp,
-            serverName,
-            async () => {
-              const playerBpList = await data.loadPlayerRanking(
-                v.world_id,
-                v.id
-              );
+      try {
+        localStorage.setItem(WORLD_ID_KEY, data.worldId);
+        const bpList = await data.loadGuildRanking();
 
-              ui.clearElementList(ui.playerRankingCellList);
-
-              if (playerBpList != null){
-                let count = 0;
-                for (const player of playerBpList) {
-                  ui.renderPlayerCell(
-                    ui.playerRankingCellContainer,
-                    ++count,
-                    player.name,
-                    player.bp
-                  );
-                }
-              }
-              
-              ui.guildNameLabel.text(v.name);
-
-              ui.contentRankings.hide();
-              ui.contentBpList.show();
-              ui.submitButtonLabel.text("close");
-              ui.headerTitleLabelA.hide();
-              ui.headerTitleLabelB.show();
+        const createGuildRanking = (container, startIndex) => {
+          for (var index = startIndex; index < startIndex + 16; ++index) {
+            if (bpList.length <= index) {
+              break;
             }
-          );
-        }
-      };
 
-      ui.clearElementList(ui.guildRankingCellList);
-      createGuildRanking(ui.guildRankingCellContainer1, 0);
-      createGuildRanking(ui.guildRankingCellContainer2, 16);
-      createGuildRanking(ui.guildRankingCellContainer3, 32);
+            const v = bpList[index];
+            const serverName = `${data.regionMap[Math.floor(v.world_id / 1000)]}${
+              v.world_id % 1000
+            }`;
+            ui.renderGuildCell(
+              container,
+              index + 1,
+              v.world_id,
+              v.name,
+              v.id,
+              v.bp,
+              serverName,
+              async () => {
+                const playerBpList = await data.loadPlayerRanking(
+                  v.world_id,
+                  v.id
+                );
 
-      ui.contentExplain.hide();
-      ui.contentLinks.hide();
-      ui.contentRankings.show();
+                ui.clearElementList(ui.playerRankingCellList);
+
+                if (playerBpList != null){
+                  let count = 0;
+                  for (const player of playerBpList) {
+                    ui.renderPlayerCell(
+                      ui.playerRankingCellContainer,
+                      ++count,
+                      player.name,
+                      player.bp
+                    );
+                  }
+                }
+                
+                ui.guildNameLabel.text(v.name);
+
+                ui.contentRankings.hide();
+                ui.contentBpList.show();
+                ui.submitButtonLabel.text("close");
+                ui.headerTitleLabelA.hide();
+                ui.headerTitleLabelB.show();
+              }
+            );
+          }
+        };
+
+        ui.clearElementList(ui.guildRankingCellList);
+        createGuildRanking(ui.guildRankingCellContainer1, 0);
+        createGuildRanking(ui.guildRankingCellContainer2, 16);
+        createGuildRanking(ui.guildRankingCellContainer3, 32);
+
+        ui.contentExplain.hide();
+        ui.contentLinks.hide();
+        ui.contentRankings.show();
+      } finally {
+        isLoadingGuildRanking = false;
+        ui.setSubmitButtonEnabled(true);
+      }
     }
   });
 

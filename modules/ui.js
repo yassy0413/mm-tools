@@ -5,6 +5,7 @@ export class UI {
   guildRankingCellContainer3 = $("#ranking-cells-3");
   playerRankingCellContainer = $("#bp-cells");
   worldIdInputField = $("#number_input");
+  submitButton = $("#Submit");
   submitButtonLabel = $("#Submit i.material-icons");
   headerTitleLabelA = $("#header-title-a");
   headerTitleLabelB = $("#header-title-b");
@@ -35,11 +36,15 @@ export class UI {
 
   updateGroupLabel(groupId) {
     if (groupId < 1) {
-      this.groupLabel.text("");
+      this.groupLabel.text(`Not\nExists`);
       return;
     }
 
-    this.groupLabel.text(`Group${groupId}`);
+    this.groupLabel.text(`Group\n${groupId}`);
+  }
+
+  setSubmitButtonEnabled(enabled) {
+    this.submitButton.prop("disabled", !enabled);
   }
 
   clearElementList(list) {
