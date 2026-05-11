@@ -34,7 +34,7 @@ a {
 
 table td,
 table th {
-  padding: 3px 8px;
+  padding: 6px 10px;
 }
 
 #content-root {
@@ -272,6 +272,11 @@ body.materialize-dropdown-open .rankcell-root {
 }
 
 @media (max-width: 650px) {
+  table td,
+  table th {
+    padding: 3px 8px;
+  }
+
   #explain {
     font-size: 0.8rem;
   }
@@ -392,7 +397,7 @@ body.materialize-dropdown-open .rankcell-root {
   top: -24px;
 
   color: #000;
-  font-size: 1.0rem;
+  font-size: 1rem;
 }
 
 #player-bp-ranking-explain {
