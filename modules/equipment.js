@@ -177,16 +177,9 @@ const initDropdownLevel = () => {
 
   $(".dropdown-level-button").dropdown({
     coverTrigger: false,
-  });
-
-  $(".dropdown-level-button").on("click", function () {
-    const $button = $(this);
-    requestAnimationFrame(() => {
-      scrollLevelDropdownToSelected($button);
-    });
-    setTimeout(() => {
-      scrollLevelDropdownToSelected($button);
-    }, 50);
+    onOpenEnd: (trigger) => {
+      scrollLevelDropdownToSelected($(trigger));
+    },
   });
 
   $(".dropdown-level li a").click(function () {
