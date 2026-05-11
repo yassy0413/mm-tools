@@ -13,7 +13,7 @@ html {
 body {
   overflow-x: hidden;
   
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-optical-sizing: auto;
   font-family: Arial, sans-serif;
   font-weight: 400;
@@ -104,7 +104,7 @@ a {
 }
 
 #header-title-b {
-  font-size: 0.8rem;
+  font-size: 0.7rem;
 }
 
 .custom-content {
