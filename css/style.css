@@ -295,3 +295,8 @@ a {
   margin: 0;
   white-space: pre-line;
 }
+
+#equipment-explain-text {
+  color: #000;
+  font-size: 0.8rem;
+}
