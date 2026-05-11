@@ -57,7 +57,7 @@ const syncLevelsByValue = (changedLevel, changedRarity) => {
 
     const closestLevel = findClosestLevelByValue(changedData.value, row.rarity);
     if (closestLevel !== null) {
-      row.$levelLabel.text(closestLevel);
+      row.$levelControl.val(String(closestLevel));
     }
   }
 };
@@ -83,11 +83,11 @@ const restoreSavedSelection = () => {
   const savedMetatronLevel = Number(localStorage.getItem(METATRON_LEVEL_KEY));
   const metatronLevel = levelList.includes(savedMetatronLevel) ? savedMetatronLevel : DEFAULT_METATRON_LEVEL;
   if (metatronRow && levelList.includes(metatronLevel)) {
-    metatronRow.$levelLabel.text(metatronLevel);
+    metatronRow.$levelControl.val(String(metatronLevel));
   }
 
   if (metatronRow) {
-    syncLevelsByValue(metatronRow.$levelLabel.text(), metatronRow.rarity);
+    syncLevelsByValue(metatronRow.$levelControl.val(), metatronRow.rarity);
   }
 };
 
@@ -100,7 +100,7 @@ const cacheElements = () => {
       const $row = $dropdownLevel.closest(".row");
 
       return {
-        $levelLabel: $row.find(".dropdown-level-label"),
+        $levelControl: $dropdownLevel,
         $value: $row.find(".equipment-value-1"),
         $additionalValue: $row.find(".equipment-value-2"),
         rarity: getRarityFromDropdown($dropdownLevel),
@@ -110,30 +110,12 @@ const cacheElements = () => {
 
 const refreshValues = () => {
   for (const row of equipmentRows) {
-    const level = row.$levelLabel.text();
+    const level = row.$levelControl.val();
     const data = getEquipmentData(level, row.rarity);
 
     row.$value.text(`武具固有値\n${formatNumber(data?.value)}`);
     row.$additionalValue.text(`追加効果\n${formatNumber(data?.additional_value)}`);
   }
-};
-
-const scrollLevelDropdownToSelected = ($button) => {
-  const dropdownId = $button.attr("data-target");
-  const $dropdown = $(`#${dropdownId}`);
-  const selectedLevel = $button.find(".dropdown-level-label").text();
-  const selectedItem = $dropdown
-    .find("li a")
-    .toArray()
-    .find((item) => $(item).text() === selectedLevel);
-
-  if (!selectedItem) {
-    return;
-  }
-
-  const itemTop = selectedItem.offsetTop;
-  const centerOffset = ($dropdown.innerHeight() - selectedItem.offsetHeight) / 2;
-  $dropdown.scrollTop(Math.max(0, itemTop - centerOffset));
 };
 
 const initDropdownSlotType = () => {
@@ -154,7 +136,7 @@ const initDropdownSlotType = () => {
     saveSlotType(selectedText);
     const baseRow = getMetatronRow();
     if (baseRow) {
-      syncLevelsByValue(baseRow.$levelLabel.text(), baseRow.rarity);
+      syncLevelsByValue(baseRow.$levelControl.val(), baseRow.rarity);
     }
     refreshValues();
   });
@@ -166,29 +148,24 @@ const initDropdownLevel = () => {
     $dropdown.empty();
 
     for (const level of levelList) {
-      $dropdown.append(`<li><a href="#!">${level}</a></li>`);
+      $dropdown.append(`<option value="${level}">${level}</option>`);
     }
 
     const firstLevel = levelList[0];
     if (firstLevel !== undefined) {
-      $dropdown.siblings(".dropdown-level-button").find(".dropdown-level-label").text(firstLevel);
+      $dropdown.val(String(firstLevel));
     }
   });
 
-  $(".dropdown-level-button").dropdown({
-    coverTrigger: false,
-  });
-
-  $(".dropdown-level li a").click(function () {
-    const selectedText = $(this).text();
-    const $dropdownLevel = $(this).closest(".dropdown-level");
+  $(".dropdown-level").on("change", function () {
+    const $dropdownLevel = $(this);
+    const selectedValue = $dropdownLevel.val();
     const changedRarity = getRarityFromDropdown($dropdownLevel);
-    $dropdownLevel.siblings(".dropdown-level-button").find(".dropdown-level-label").text(selectedText);
 
     if (changedRarity === 1) {
-      saveMetatronLevel(selectedText);
+      saveMetatronLevel(selectedValue);
     }
-    syncLevelsByValue(selectedText, changedRarity);
+    syncLevelsByValue(selectedValue, changedRarity);
     refreshValues();
   });
 };

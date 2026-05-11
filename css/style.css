@@ -280,6 +280,11 @@ a {
   width: 80px;
 }
 
+.dropdown-level {
+  min-width: 84px;
+  height: 36px;
+}
+
 .equipment-values {
   display: flex;
   flex-direction: row;
