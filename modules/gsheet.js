@@ -34,7 +34,7 @@ class PlayerData {
     this.name = row[2];
     this.bp = Number(row[3].replace(/,/g, ""));
     this.rank = Number(row[4]);
-    this.quest = row[5];
+    this.quest = row[5].replace(".", "-");
     this.tower = Number(row[6]);
     this.towerRed = Number(row[7]);
     this.towerBlue = Number(row[8]);

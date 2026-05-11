@@ -32,6 +32,11 @@ a {
   text-decoration: none;
 }
 
+table td,
+table th {
+  padding: 3px 8px;
+}
+
 #content-root {
   display: none;
 }
@@ -377,7 +382,7 @@ body.materialize-dropdown-open .rankcell-root {
   position: relative;
   height: 70px;
   display: flex;
-  margin-top: 20px;
+  margin-top: 4px;
   padding-top: 36px;
 }
 
@@ -392,6 +397,7 @@ body.materialize-dropdown-open .rankcell-root {
 
 #player-bp-ranking-explain {
   display: flex;
+  margin-bottom: 0;
 }
 
 #player-bp-ranking-last-updated {
@@ -438,10 +444,6 @@ body.materialize-dropdown-open .rankcell-root {
   color: #060;
 }
 
-.player-bp-rankcell-row {
-  height: 36px;
-}
-
 .player-bp-rankcell-ranking {
   min-width: 40px;
 }
@@ -463,43 +465,6 @@ body.materialize-dropdown-open .rankcell-root {
 .player-bp-rankcell-league-unit {
   display: none;
 }
-
-/* .player-bp-rankcell-row {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 16px;
-  color: #fff;
-} */
-
-/* .palyer-bp-rankcell-rank {
-  color: black;
-  font-size: 0.9em;
-  font-weight: bold;
-  width: 20px;
-}
-
-.palyer-bp-rankcell-world {
-  color: black;
-  font-size: 0.9em;
-  font-weight: bold;
-  width: 30px;
-}
-
-.palyer-bp-rankcell-guildname {
-  color: black;
-  font-size: 0.9em;
-  width: 140px;
-} */
-
-/* .palyer-bp-rankcell-bp {
-  color: black;
-  font-family: "Courier New", Courier, monospace;
-  font-size: 1em;
-  text-align: right;
-  margin-left: auto;
-  font-weight: bold;
-} */
 
 @media (max-width: 650px) {
   #tool-links {
