@@ -254,6 +254,10 @@ body.materialize-dropdown-open .rankcell-root {
   padding-bottom: 0px;
 }
 
+#content-bplist {
+  width: 100%;
+}
+
 @media (max-width: 650px) {
   #explain {
     font-size: 0.8rem;
@@ -261,7 +265,8 @@ body.materialize-dropdown-open .rankcell-root {
 
   .youtube-iframe,
   .container,
-  #content-explain {
+  #content-explain,
+  #content-bplist {
     width: 90%;
   }
 
