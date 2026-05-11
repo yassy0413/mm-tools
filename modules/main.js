@@ -1,6 +1,7 @@
 ("use strict");
 import { Api } from "./api.js";
 import { Data } from "./data.js";
+import { initGuardedDropdown } from "./materialize-dropdown-guard.js";
 import { UI } from "./ui.js";
 
 $(document).ready(async () => {
@@ -125,7 +126,7 @@ $(document).ready(async () => {
     $dropdown.append(`<li><a href="#!">${data.regionMap[key]}</a></li>`);
   }
 
-  $(".dropdown-trigger").dropdown();
+  initGuardedDropdown($("#dropdownButton"), $dropdown);
 
   $("#dropdown-servers li a").click(function () {
     const selectedText = $(this).text();

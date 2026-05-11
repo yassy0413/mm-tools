@@ -1,5 +1,6 @@
 ("use strict");
 import { GSheet } from "./gsheet.js";
+import { initGuardedDropdown } from "./materialize-dropdown-guard.js";
 
 const SLOT_TYPE_KEY = "equipment_slottype";
 const METATRON_LEVEL_KEY = "equipment_metatron_level";
@@ -125,7 +126,7 @@ const initDropdownSlotType = () => {
     $dropdown.append(`<li><a href="#!">${slotType}</a></li>`);
   }
 
-  $("#dropdown-slottype-button").dropdown({
+  initGuardedDropdown($("#dropdown-slottype-button"), $dropdown, {
     coverTrigger: false,
   });
 

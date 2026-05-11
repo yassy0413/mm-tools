@@ -141,6 +141,15 @@ a {
   margin-right: 0;
 }
 
+.dropdown-content {
+  z-index: 10000;
+}
+
+body.materialize-dropdown-open .dropdown-level,
+body.materialize-dropdown-open .rankcell-root {
+  pointer-events: none;
+}
+
 .collection-header {
   color: green;
 
