@@ -16,7 +16,7 @@
   <!--Import materialize.css-->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
   <!--Import application css-->
-  <link type="text/css" rel="stylesheet" href="css/style.css?v=1.08" />
+  <link type="text/css" rel="stylesheet" href="css/style.css?v=1.09" />
 
   <meta property="og:title" content="MM Group Guild Bp Ranking" />
   <meta property="og:description" content="MMのグラバトグループのギルド戦力ランキングと、各ギルドに所属する個人戦力ランキングエントリープレイヤーのリストを手軽に閲覧できるツール" />
@@ -51,7 +51,7 @@
         <!-- Dropdown -->
         <div class="col">
           <ul id="dropdown-servers" class="dropdown-content"></ul>
-        <a class="btn dropdown-trigger dropdown-button" href="#!" data-target="dropdown-servers" id="dropdownButton">
+          <a class="btn dropdown-trigger dropdown-button" href="#!" data-target="dropdown-servers" id="dropdownButton">
             jp<i class="material-icons right">arrow_drop_down</i>
           </a>
         </div>
@@ -144,30 +144,6 @@
         </div>
       </section>
 
-      <section id="content-rankings" class="scroll-container" aria-label="ギルド戦力ランキング">
-        <div class="container custom-content">
-          <div class="row center-align-vertical">
-            <ul id="ranking-cells-1" class="collection with-header ranking-cell z-depth-1">
-              <li class="collection-header">
-                <h5>グランドマスター級</h5>
-              </li>
-            </ul>
-
-            <ul id="ranking-cells-2" class="collection with-header ranking-cell z-depth-1">
-              <li class="collection-header">
-                <h5>エキスパート級</h5>
-              </li>
-            </ul>
-
-            <ul id="ranking-cells-3" class="collection with-header ranking-cell z-depth-1">
-              <li class="collection-header">
-                <h5>エリート級</h5>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
       <section id="content-bplist" class="container custom-content-bp" aria-label="プレイヤー戦闘力ランキング">
         <ul id="bp-cells" class="collection with-header ranking-cell col s4 m4 z-depth-2">
           <li id="guild-name" class="collection-header">
@@ -177,6 +153,30 @@
       </section>
     </main>
   </div>
+
+  <section id="content-rankings" class="scroll-container" aria-label="ギルド戦力ランキング">
+    <div class="container custom-content">
+      <div class="row center-align-vertical">
+        <ul id="ranking-cells-1" class="collection with-header ranking-cell z-depth-1">
+          <li class="collection-header">
+            <h5>グランドマスター級</h5>
+          </li>
+        </ul>
+
+        <ul id="ranking-cells-2" class="collection with-header ranking-cell z-depth-1">
+          <li class="collection-header">
+            <h5>エキスパート級</h5>
+          </li>
+        </ul>
+
+        <ul id="ranking-cells-3" class="collection with-header ranking-cell z-depth-1">
+          <li class="collection-header">
+            <h5>エリート級</h5>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
   <template id="ranking-cell">
     <li class="collection-item rankcell-root">

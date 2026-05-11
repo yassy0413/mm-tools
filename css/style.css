@@ -12,7 +12,7 @@ html {
 
 body {
   overflow-x: hidden;
-  
+
   font-size: 0.9rem;
   font-optical-sizing: auto;
   font-family: Arial, sans-serif;
@@ -109,6 +109,7 @@ a {
 
 .custom-content {
   width: 100%;
+  margin: 0 auto;
 }
 
 .custom-content-bp {
@@ -263,19 +264,23 @@ body.materialize-dropdown-open .rankcell-root {
   #content-explain {
     width: 90%;
   }
+
+  .custom-content {
+    margin: 0;
+  }
 }
 
 /* Equipment */
 
-#equipment-section{
+#equipment-section {
   margin-top: 10px;
   color: #000;
-  font-size: 1.0rem;
+  font-size: 1rem;
   padding: 20px 20px;
 }
 
 #equipment-category {
-  font-size: 1.0rem;
+  font-size: 1rem;
 }
 
 .equipment-separator {
