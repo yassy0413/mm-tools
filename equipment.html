@@ -14,7 +14,7 @@
   <!--Import materialize.css-->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
   <!--Import application css-->
-  <link type="text/css" rel="stylesheet" href="css/style.css?v=1.07" />
+  <link type="text/css" rel="stylesheet" href="css/style.css?v=1.08" />
 </head>
 
 <body style="background-color: #eee; color: #fff">
@@ -37,11 +37,7 @@
       <div id="equipment-category" class="row center-align-vertical">
         <p class="equipment-item-title">装備部位</p>
         <div class="col dropdown-level-wrapper">
-          <ul id="dropdown-slottype" class="dropdown-content"></ul>
-          <a class="btn dropdown-trigger dropdown-button" href="#!" data-target="dropdown-slottype"
-            id="dropdown-slottype-button">
-            <span id="dropdown-slottype-label">飾</span>
-          </a>
+          <select id="dropdown-slottype" class="dropdown-slot-type browser-default" aria-label="装備部位"></select>
         </div>
       </div>
       <hr class="equipment-separator">
@@ -92,7 +88,7 @@
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"
     integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <script type="module" src="modules/equipment.js?v=1.07"></script>
+  <script type="module" src="modules/equipment.js?v=1.08"></script>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z8CV5JWWLX"></script>
   <script>

@@ -305,7 +305,8 @@ body.materialize-dropdown-open .rankcell-root {
   transform: translateY(-50%);
 }
 
-.dropdown-level {
+.dropdown-level,
+.dropdown-slot-type {
   appearance: none;
   -webkit-appearance: none;
   background-color: #26a69a;

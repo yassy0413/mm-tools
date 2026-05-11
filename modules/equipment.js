@@ -1,6 +1,5 @@
 ("use strict");
 import { GSheet } from "./gsheet.js";
-import { initGuardedDropdown } from "./materialize-dropdown-guard.js";
 
 const SLOT_TYPE_KEY = "equipment_slottype";
 const METATRON_LEVEL_KEY = "equipment_metatron_level";
@@ -9,7 +8,6 @@ const slotTypeMap = ["飾", "手", "頭", "胴", "足"];
 let equipmentMap = new Map();
 let levelList = [];
 let selectedSlotTypeIndex = 0;
-let $slotTypeLabel = null;
 let equipmentRows = [];
 
 const getEquipmentData = (level, rarity) => {
@@ -77,7 +75,7 @@ const restoreSavedSelection = () => {
   const savedSlotType = localStorage.getItem(SLOT_TYPE_KEY);
   if (slotTypeMap.includes(savedSlotType)) {
     selectedSlotTypeIndex = slotTypeMap.indexOf(savedSlotType);
-    $slotTypeLabel.text(savedSlotType);
+    $("#dropdown-slottype").val(savedSlotType);
   }
 
   const metatronRow = getMetatronRow();
@@ -93,7 +91,6 @@ const restoreSavedSelection = () => {
 };
 
 const cacheElements = () => {
-  $slotTypeLabel = $("#dropdown-slottype-label");
   equipmentRows = $(".dropdown-level")
     .toArray()
     .map((dropdownLevel) => {
@@ -123,17 +120,13 @@ const initDropdownSlotType = () => {
   const $dropdown = $("#dropdown-slottype");
   $dropdown.empty();
   for (const slotType of slotTypeMap) {
-    $dropdown.append(`<li><a href="#!">${slotType}</a></li>`);
+    $dropdown.append(`<option value="${slotType}">${slotType}</option>`);
   }
+  $dropdown.val(slotTypeMap[selectedSlotTypeIndex]);
 
-  initGuardedDropdown($("#dropdown-slottype-button"), $dropdown, {
-    coverTrigger: false,
-  });
-
-  $("#dropdown-slottype li a").click(function () {
-    const selectedText = $(this).text();
+  $dropdown.on("change", function () {
+    const selectedText = $(this).val();
     selectedSlotTypeIndex = slotTypeMap.indexOf(selectedText);
-    $slotTypeLabel.text(selectedText);
     saveSlotType(selectedText);
     const baseRow = getMetatronRow();
     if (baseRow) {
