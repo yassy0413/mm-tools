@@ -280,9 +280,36 @@ a {
   width: 80px;
 }
 
+.dropdown-level-wrapper {
+  position: relative;
+}
+
+.dropdown-level-wrapper::after {
+  content: "▼";
+  color: #fff;
+  font-size: 10px;
+  line-height: 1;
+  pointer-events: none;
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
 .dropdown-level {
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: #26a69a;
+  border: 0;
+  border-radius: 2px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
   min-width: 84px;
   height: 36px;
+  line-height: 36px;
+  padding: 0 28px 0 16px;
+  text-align: center;
 }
 
 .equipment-values {
