@@ -177,9 +177,6 @@ const initDropdownLevel = () => {
 
   $(".dropdown-level-button").dropdown({
     coverTrigger: false,
-    onOpenEnd: (trigger) => {
-      scrollLevelDropdownToSelected($(trigger));
-    },
   });
 
   $(".dropdown-level li a").click(function () {
