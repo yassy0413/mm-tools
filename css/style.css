@@ -41,6 +41,10 @@ table th {
   display: none;
 }
 
+#content-rankings {
+  display: none;
+}
+
 table.highlight tbody tr:hover {
   background-color: #dddddd;
 }
