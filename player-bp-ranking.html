@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="">
+  <link rel="icon" href="./favicon.ico" type="image/x-icon">
+  <title>MM All Player Bp Ranking</title>
+
+  <!--Import Google Icon Font-->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+  <!--Import materialize.css-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+  <!--Import application css-->
+  <link type="text/css" rel="stylesheet" href="css/style.css?v=1.06" />
+</head>
+
+<body style="background-color: #eee; color: #fff">
+  <div class="wrapper">
+    <header class="header-title grey lighten-4 z-depth-2 center">
+      <a class="btn-floating waves-effect waves-light header-home-button" href="./" aria-label="ホーム">
+        <i class="material-icons">home</i>
+      </a>
+      <h1 class="header-heading">
+        <span class="black-text" id="header-title-c">
+          全鯖プレーヤー戦力ランキング！
+        </span>
+      </h1>
+    </header>
+  </div>
+
+  <main>
+    <div class="wrapper">
+      <p id="player-bp-ranking-last-updated"></p>
+      <section class="container grey lighten-4 z-depth-2" aria-label="検索条件" id="player-bp-ranking-toolbar">
+        <div class="row center-align-vertical">
+          <p id="player-bp-ranking-title">Filter</p>
+          <!-- Dropdown -->
+          <div class="col">
+            <ul id="dropdown-servers" class="dropdown-content"></ul>
+            <a class="btn dropdown-trigger dropdown-button" href="#!" data-target="dropdown-servers"
+              id="dropdownButton">
+              jp<i class="material-icons right">arrow_drop_down</i>
+            </a>
+          </div>
+
+          <!-- Input Field -->
+          <div class="input-field col">
+            <input id="number_input" type="number" class="validate" />
+            <label class="blue-grey-text text-darken-3 number_input_label" for="number_input">ワールド番号を入力...</label>
+          </div>
+
+          <div class="input-field col player-bp-ranking-guild-filter">
+            <input id="guild_name_input" type="text" class="validate" />
+            <label class="blue-grey-text text-darken-3" for="guild_name_input">ギルド名を入力...</label>
+          </div>
+        </div>
+      </section>
+    </div>
+    <section class="player-bp-ranking-table-scroll">
+      <table class="player-bp-ranking-table highlight">
+        <thead>
+          <!-- 順位	ワールド	ユーザー名	戦闘力	ランク	クエスト	塔	紅塔	藍塔	翠塔	黄塔	ギルド -->
+          <tr class="player-bp-rankcell-header">
+            <th>順位</th>
+            <th>ワールド</th>
+            <th>ユーザー名</th>
+            <th>戦闘力</th>
+            <th>ランク</th>
+            <th>クエスト</th>
+            <th>塔</th>
+            <th>紅塔</th>
+            <th>藍塔</th>
+            <th>翠塔</th>
+            <th>黄塔</th>
+            <th>ギルド</th>
+            <th class="player-bp-rankcell-league-unit">レジェリ 1</th>
+            <th class="player-bp-rankcell-league-unit">レジェリ 2</th>
+            <th class="player-bp-rankcell-league-unit">レジェリ 3</th>
+            <th class="player-bp-rankcell-league-unit">レジェリ 4</th>
+            <th class="player-bp-rankcell-league-unit">レジェリ 5</th>
+          </tr>
+        </thead>
+        <tbody id="player-bp-ranking-container">
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <!-- collection-item  -->
+  <template id="player-bp-ranking-cell">
+    <tr class="player-bp-rankcell-row">
+      <td class="player-bp-rankcell-ranking"></td>
+      <td class="player-bp-rankcell-world"></td>
+      <td class="player-bp-rankcell-name"></td>
+      <td class="player-bp-rankcell-bp"></td>
+      <td class="player-bp-rankcell-player-rank"></td>
+      <td class="player-bp-rankcell-quest"></td>
+      <td class="player-bp-rankcell-tower"></td>
+      <td class="player-bp-rankcell-tower-red"></td>
+      <td class="player-bp-rankcell-tower-blue"></td>
+      <td class="player-bp-rankcell-tower-green"></td>
+      <td class="player-bp-rankcell-tower-yellow"></td>
+      <td class="player-bp-rankcell-guild-name"></td>
+      <td class="player-bp-rankcell-league-unit player-bp-rankcell-league-unit-1"></td>
+      <td class="player-bp-rankcell-league-unit player-bp-rankcell-league-unit-2"></td>
+      <td class="player-bp-rankcell-league-unit player-bp-rankcell-league-unit-3"></td>
+      <td class="player-bp-rankcell-league-unit player-bp-rankcell-league-unit-4"></td>
+      <td class="player-bp-rankcell-league-unit player-bp-rankcell-league-unit-5"></td>
+    </tr>
+  </template>
+
+  <!--JavaScript at end of body for optimized loading-->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script type="module" src="modules/player_bp_ranking.js"></script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z8CV5JWWLX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-Z8CV5JWWLX');
+  </script>
+</body>
+
+</html>

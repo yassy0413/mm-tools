@@ -27,6 +27,28 @@ class EquipmentDataGroup {
   }
 }
 
+class PlayerData {
+  constructor(row) {
+    this.ranking = Number(row[0]);
+    this.world = row[1];
+    this.name = row[2];
+    this.bp = Number(row[3].replace(/,/g, ""));
+    this.rank = Number(row[4]);
+    this.quest = row[5];
+    this.tower = Number(row[6]);
+    this.towerRed = Number(row[7]);
+    this.towerBlue = Number(row[8]);
+    this.towerGreen = Number(row[9]);
+    this.towerYellow = Number(row[10]);
+    this.guildName = row[11];
+    this.leagueUnit1 = row[12];
+    this.leagueUnit2 = row[13];
+    this.leagueUnit3 = row[14];
+    this.leagueUnit4 = row[15];
+    this.leagueUnit5 = row[16];
+  }
+}
+
 export class GSheet {
   static URL =
     "https://docs.google.com/spreadsheets/d/15bxBeoWfO4R1b1u5OlohpwCsZLmWEUOaXwrsT9h0eYg/export?format=csv&gid=";
@@ -89,10 +111,50 @@ export class GSheet {
   }
 
   static ParseCsv(csvText) {
-    return csvText
-      .trim()
-      .split("\n")
-      .map((line) => line.replace(/\r/g, "").split(","));
+    const rows = [];
+    let row = [];
+    let cell = "";
+    let inQuotes = false;
+
+    const pushCell = () => {
+      row.push(cell);
+      cell = "";
+    };
+
+    const pushRow = () => {
+      pushCell();
+      rows.push(row);
+      row = [];
+    };
+
+    for (let index = 0; index < csvText.length; index += 1) {
+      const char = csvText[index];
+      const nextChar = csvText[index + 1];
+
+      if (char === '"') {
+        if (inQuotes && nextChar === '"') {
+          cell += '"';
+          index += 1;
+        } else {
+          inQuotes = !inQuotes;
+        }
+      } else if (char === "," && !inQuotes) {
+        pushCell();
+      } else if ((char === "\n" || char === "\r") && !inQuotes) {
+        pushRow();
+        if (char === "\r" && nextChar === "\n") {
+          index += 1;
+        }
+      } else {
+        cell += char;
+      }
+    }
+
+    if (cell !== "" || row.length > 0) {
+      pushRow();
+    }
+
+    return rows;
   }
 
   static async RequestEquipment() {
@@ -113,5 +175,24 @@ export class GSheet {
     );
     
     return equipmentMap;
+  }
+
+  static async RequestBpRanking() {
+    const bpRankingCsv = await this.Request("0");
+
+    if (!bpRankingCsv) {
+      return null;
+    }
+
+    const rows = this.ParseCsv(bpRankingCsv);
+    const dataRows = rows.slice(2);
+
+    const bpRankingList = dataRows.map((v) => new PlayerData(v));
+    const lastUpdated = rows[0][0].replace("LastUpdated:", "データ最終更新：");
+
+    return {
+      bpRankingList,
+      lastUpdated,
+    };
   }
 }
