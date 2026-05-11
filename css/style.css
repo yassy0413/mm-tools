@@ -390,7 +390,17 @@ body.materialize-dropdown-open .rankcell-root {
   font-size: 1.0rem;
 }
 
+#player-bp-ranking-explain {
+  display: flex;
+}
+
 #player-bp-ranking-last-updated {
+  color: #000;
+  font-size: 0.6rem;
+  margin-left: 12px;
+}
+
+#player-bp-ranking-remark {
   color: #000;
   font-size: 0.6rem;
   margin-left: 12px;

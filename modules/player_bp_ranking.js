@@ -15,6 +15,7 @@ let currentWorldId = "";
 let currentGuildName = "";
 
 const formatNumber = (value) => Number(value).toLocaleString();
+const formatTowerNumber = (value) => Number(value) === 0 ? "" : value;
 const getRegionText = (value) =>
   String(value ?? "")
     .match(/[a-zA-Z]+/)?.[0]
@@ -27,11 +28,11 @@ const playerDataColumns = [
   { key: "bp", className: "bp", format: formatNumber },
   { key: "rank", className: "player-rank" },
   { key: "quest", className: "quest" },
-  { key: "tower", className: "tower" },
-  { key: "towerRed", className: "tower-red" },
-  { key: "towerBlue", className: "tower-blue" },
-  { key: "towerGreen", className: "tower-green" },
-  { key: "towerYellow", className: "tower-yellow" },
+  { key: "tower", className: "tower", format: formatTowerNumber },
+  { key: "towerRed", className: "tower-red", format: formatTowerNumber },
+  { key: "towerBlue", className: "tower-blue", format: formatTowerNumber },
+  { key: "towerGreen", className: "tower-green", format: formatTowerNumber },
+  { key: "towerYellow", className: "tower-yellow", format: formatTowerNumber },
   { key: "guildName", className: "guild-name" },
   { key: "leagueUnit1", className: "league-unit-1" },
   { key: "leagueUnit2", className: "league-unit-2" },
