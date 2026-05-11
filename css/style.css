@@ -4,16 +4,47 @@
   display: none;
 }
 
+html {
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+  box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden;
+  
+  font-size: 1rem;
+  font-optical-sizing: auto;
+  font-family: Arial, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  margin: 0;
+  padding: 0;
+  line-height: normal;
+}
+
+img {
+  width: 100%;
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+}
+
 #content-root {
   display: none;
 }
 
-body {
-  margin: 0;
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
-  overflow-x: hidden;
+.wrapper {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.container {
+  width: 100%;
 }
 
 .row.center-align-vertical {
@@ -95,7 +126,7 @@ body {
   text-align: center;
 }
 
-#dropdownButton {
+.dropdown-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -104,7 +135,7 @@ body {
   padding: 0 12px;
 }
 
-#dropdownButton .material-icons.right {
+.dropdown-button .material-icons.right {
   float: none;
   margin-left: 0;
   margin-right: 0;
@@ -173,13 +204,7 @@ body {
 
 #explain {
   padding: 24px;
-  font-size: 0.9em;
-}
-
-@media (min-width: 768px) {
-  #explain {
-    font-size: 1.4em;
-  }
+  font-size: 1.2rem;
 }
 
 .explain-red-text {
@@ -194,29 +219,79 @@ body {
   font-weight: bold;
 }
 
-#content-links {
-  margin-top: 60px;
-  margin-bottom: 100px;
+#content-tools,
+#content-resources {
+  margin-top: 40px;
+  margin-bottom: 60px;
   border-top: 1px solid rgba(0, 0, 0, 0.14);
 }
 
+#tools-title {
+  margin-bottom: 20px;
+}
+
 .youtube-iframe {
-  width: 90%;
   aspect-ratio: 16 / 9;
   display: block;
   margin: 20px auto 40px auto;
 }
 
-@media (min-width: 768px) {
-  .youtube-iframe {
-    width: 50%;
-  }
-}
-
 .section-title {
-  font-size: 1.64rem;
+  font-size: 1.4rem;
   margin-top: 10px;
   margin-bottom: 0px;
   padding-top: 0px;
   padding-bottom: 0px;
+}
+
+@media (max-width: 650px) {
+  #explain {
+    font-size: 0.8rem;
+  }
+
+  .youtube-iframe,
+  .container,
+  #content-explain {
+    width: 90%;
+  }
+}
+
+/* Equipment */
+
+#equipment-section{
+  margin-top: 10px;
+  color: #000;
+  font-size: 1.0rem;
+  padding: 20px 20px;
+}
+
+#equipment-category {
+  font-size: 1.0rem;
+}
+
+.equipment-separator {
+  width: 100%;
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.18);
+  margin: 16px 0;
+}
+
+.equipment-item-title {
+  width: 80px;
+}
+
+.equipment-values {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.equipment-value-1 {
+  margin: 0;
+  white-space: pre-line;
+}
+
+.equipment-value-2 {
+  margin: 0;
+  white-space: pre-line;
 }

@@ -12,7 +12,8 @@ export class UI {
   guildNameLabel = $("#guild-name");
   groupLabel = $("#group-label");
   contentExplain = $("#content-explain");
-  contentLinks = $("#content-links");
+  contentTools = $("#content-tools");
+  contentResources = $("#content-resources");
   contentRankings = $("#content-rankings");
   contentBpList = $("#content-bplist");
 
@@ -21,7 +22,8 @@ export class UI {
 
   constructor() {
     this.contentExplain.hide();
-    this.contentLinks.hide();
+    this.contentTools.hide();
+    this.contentResources.hide();
     this.contentBpList.hide();
     this.contentRankings.hide();
     this.headerTitleLabelA.show();
@@ -31,7 +33,8 @@ export class UI {
 
     $("#content-root").show();
     this.contentExplain.fadeIn(500);
-    this.contentLinks.fadeIn(500);
+    this.contentTools.fadeIn(500);
+    this.contentResources.fadeIn(500);
   }
 
   updateGroupLabel(groupId) {

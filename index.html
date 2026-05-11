@@ -26,142 +26,157 @@
 </head>
 
 <body style="background-color: #eee; color: #fff">
+  <div class="wrapper">
+    <header class="header-title grey lighten-4 z-depth-2 center">
+      <a class="btn-floating waves-effect waves-light header-home-button" href="./" aria-label="ホーム">
+        <i class="material-icons">home</i>
+      </a>
+      <h1 class="header-heading">
+        <span class="black-text" id="header-title-a">
+          Group Guild Bp Ranking
+        </span>
+        <span class="black-text hidden" id="header-title-b">
+          <b><span style="color: #f00;">戦闘力ランキング</span></b>にエントリーしているプレーヤーのリスト
+        </span>
+      </h1>
+    </header>
 
-  <header class="header-title grey lighten-4 z-depth-2 center">
-    <a class="btn-floating waves-effect waves-light header-home-button" href="./" aria-label="ホーム">
-      <i class="material-icons">home</i>
-    </a>
-    <h1 class="header-heading">
-      <span class="black-text" id="header-title-a">
-        Group Guild Bp Ranking
-      </span>
-      <span class="black-text hidden" id="header-title-b">
-        <b><span style="color: #f00;">戦闘力ランキング</span></b>にエントリーしているプレーヤーのリスト
-      </span>
-    </h1>
-  </header>
+    <section class="container grey lighten-4 z-depth-2 custom-toolbar" aria-label="検索条件">
+      <div class="row center-align-vertical" id="main-tool-bar">
+        <!-- Group Id -->
+        <div class="col">
+          <span class="black-text" id="group-label"></span>
+        </div>
 
-  <section class="container grey lighten-4 z-depth-2 custom-toolbar" aria-label="検索条件">
-    <div class="row center-align-vertical" id="main-tool-bar">
-      <!-- Group Id -->
-      <div class="col">
-        <span class="black-text" id="group-label"></span>
-      </div>
+        <!-- Dropdown -->
+        <div class="col">
+          <ul id="dropdown-servers" class="dropdown-content"></ul>
+        <a class="btn dropdown-trigger dropdown-button" href="#!" data-target="dropdown-servers" id="dropdownButton">
+            jp<i class="material-icons right">arrow_drop_down</i>
+          </a>
+        </div>
 
-      <!-- Dropdown -->
-      <div class="col">
-        <ul id="dropdown-servers" class="dropdown-content"></ul>
-        <a class="btn dropdown-trigger" href="#!" data-target="dropdown-servers" id="dropdownButton">
-          jp<i class="material-icons right">arrow_drop_down</i>
-        </a>
-      </div>
+        <!-- Input Field -->
+        <div class="input-field col">
+          <input id="number_input" type="number" class="validate" />
+          <label class="blue-grey-text text-darken-3 number_input_label" for="number_input">ワールド番号を入力...</label>
+        </div>
 
-      <!-- Input Field -->
-      <div class="input-field col">
-        <input id="number_input" type="number" class="validate" />
-        <label class="blue-grey-text text-darken-3 number_input_label" for="number_input">ワールド番号を入力...</label>
-      </div>
-
-      <!-- Button -->
-      <div class="col">
-        <button class="btn waves-effect waves-light" type="submit" name="action" id="Submit">
-          <i class="material-icons"></i>
-        </button>
-      </div>
-    </div>
-  </section>
-
-  <main id="content-root">
-    <section id="content-explain" class="container center z-depth-3" aria-label="使い方">
-      <div id="explain" class="black-text">
-        <span class="explain-red-text">ワールド番号</span>を入力して、
-        <span class="explain-red-text">その右の更新ボタン</span>をおすと<br />
-        対象のワールドが所属するグループのギルドが<br />
-        戦力降順で４８個(16x3)表示されます。<br />
-        <br />
-        ギルドセルをタップすると、<br />
-        <b><span class="explain-green-text">戦闘力ランキングにエントリー</span></b>している<br />
-        <b><span class="explain-green-text">プレーヤーのリスト</span></b>が表示されます。<br />
-      </div>
-    </section>
-
-    <section id="content-links" class="center" aria-labelledby="links-title">
-      <div class="center black-text">
-        <h2 id="links-title" class="section-title">LINKS</h2>
-      </div>
-
-      <div id="link_weapon">
-        <a href="https://docs.google.com/spreadsheets/d/15bxBeoWfO4R1b1u5OlohpwCsZLmWEUOaXwrsT9h0eYg/edit?gid=1773042965#gid=1773042965"
-          target="_blank">
-          <img class="youtube-iframe z-depth-2" src="./images/link_weapon.png?v=1.1" alt="">
-        </a>
-      </div>
-
-      <div id="link_bp_rank">
-        <a href="https://docs.google.com/spreadsheets/d/15bxBeoWfO4R1b1u5OlohpwCsZLmWEUOaXwrsT9h0eYg/edit?gid=0#gid=0"
-          target="_blank">
-          <img class="youtube-iframe z-depth-2" src="./images/link_bp_rank.png?v=1.0" alt="">
-        </a>
-      </div>
-
-      <div id="link_youtube_yassy">
-        <iframe class="youtube-iframe z-depth-2"
-          src="https://www.youtube.com/embed/videoseries?si=bxRKvKTPz6q_r5IE&amp;list=PLv9V6VF7SsQWPt5W-jEePL2g_WIIIMksq"
-          title="YouTube video player" frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
-        </iframe>
-      </div>
-
-      <div id="link_youtube_enjack">
-        <iframe class="youtube-iframe z-depth-2" src="https://www.youtube.com/embed/9YlkizeB7fc?si=jb_wrCc0ZE1kCRM6"
-          title="YouTube video player" frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
-        </iframe>
-      </div>
-
-      <div id="link_youtube_rei">
-        <iframe class="youtube-iframe z-depth-2" src="https://www.youtube.com/embed/P1Ee-6DAMRg?si=ETnWM-Qb4NxuFLxY"
-          title="YouTube video player" frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
-        </iframe>
-      </div>
-    </section>
-
-    <section id="content-rankings" class="scroll-container" aria-label="ギルド戦力ランキング">
-      <div class="container custom-content">
-        <div class="row center-align-vertical">
-          <ul id="ranking-cells-1" class="collection with-header ranking-cell z-depth-1">
-            <li class="collection-header">
-              <h5>グランドマスター級</h5>
-            </li>
-          </ul>
-
-          <ul id="ranking-cells-2" class="collection with-header ranking-cell z-depth-1">
-            <li class="collection-header">
-              <h5>エキスパート級</h5>
-            </li>
-          </ul>
-
-          <ul id="ranking-cells-3" class="collection with-header ranking-cell z-depth-1">
-            <li class="collection-header">
-              <h5>エリート級</h5>
-            </li>
-          </ul>
+        <!-- Button -->
+        <div class="col">
+          <button class="btn waves-effect waves-light" type="submit" name="action" id="Submit">
+            <i class="material-icons"></i>
+          </button>
         </div>
       </div>
     </section>
 
-    <section id="content-bplist" class="container custom-content-bp" aria-label="プレイヤー戦闘力ランキング">
-      <ul id="bp-cells" class="collection with-header ranking-cell col s4 m4 z-depth-2">
-        <li id="guild-name" class="collection-header">
-          <h5>GuildName</h5>
-        </li>
-      </ul>
-    </section>
-  </main>
+    <main id="content-root">
+      <section id="content-explain" class="container center z-depth-3" aria-label="使い方">
+        <div id="explain" class="black-text">
+          <span class="explain-red-text">ワールド番号</span>を入力して、
+          <span class="explain-red-text">その右の更新ボタン</span>をおすと<br />
+          対象のワールドが所属するグループのギルドが<br />
+          戦力降順で４８個(16x3)表示されます。<br />
+          <br />
+          ギルドセルをタップすると、<br />
+          <b><span class="explain-green-text">戦闘力ランキングにエントリー</span></b>している<br />
+          <b><span class="explain-green-text">プレーヤーのリスト</span></b>が表示されます。<br />
+        </div>
+      </section>
+
+      <section id="content-tools" class="center" aria-labelledby="tools-title">
+        <div class="center black-text">
+          <h2 id="tools-title" class="section-title">MORE TOOLS</h2>
+        </div>
+
+        <button class="btn waves-effect waves-light" type="submit" name="action">
+          <a href="equipment.html">装備効果値 比較</a>
+        </button>
+
+        <!-- <button class="btn waves-effect waves-light" type="submit" name="action">
+          全鯖プレーヤー戦力ランキング
+        </button> -->
+      </section>
+
+      <section id="content-resources" class="center" aria-labelledby="resources-title">
+        <div class="center black-text">
+          <h2 id="resources-title" class="section-title">LINKS</h2>
+        </div>
+
+        <div id="link_weapon">
+          <a href="https://docs.google.com/spreadsheets/d/15bxBeoWfO4R1b1u5OlohpwCsZLmWEUOaXwrsT9h0eYg/edit?gid=1773042965#gid=1773042965"
+            target="_blank">
+            <img class="youtube-iframe z-depth-2" src="./images/link_weapon.png?v=1.1" alt="">
+          </a>
+        </div>
+
+        <div id="link_bp_rank">
+          <a href="https://docs.google.com/spreadsheets/d/15bxBeoWfO4R1b1u5OlohpwCsZLmWEUOaXwrsT9h0eYg/edit?gid=0#gid=0"
+            target="_blank">
+            <img class="youtube-iframe z-depth-2" src="./images/link_bp_rank.png?v=1.0" alt="">
+          </a>
+        </div>
+
+        <div id="link_youtube_yassy">
+          <iframe class="youtube-iframe z-depth-2"
+            src="https://www.youtube.com/embed/videoseries?si=bxRKvKTPz6q_r5IE&amp;list=PLv9V6VF7SsQWPt5W-jEePL2g_WIIIMksq"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+          </iframe>
+        </div>
+
+        <div id="link_youtube_enjack">
+          <iframe class="youtube-iframe z-depth-2" src="https://www.youtube.com/embed/9YlkizeB7fc?si=jb_wrCc0ZE1kCRM6"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+          </iframe>
+        </div>
+
+        <div id="link_youtube_rei">
+          <iframe class="youtube-iframe z-depth-2" src="https://www.youtube.com/embed/P1Ee-6DAMRg?si=ETnWM-Qb4NxuFLxY"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+          </iframe>
+        </div>
+      </section>
+
+      <section id="content-rankings" class="scroll-container" aria-label="ギルド戦力ランキング">
+        <div class="container custom-content">
+          <div class="row center-align-vertical">
+            <ul id="ranking-cells-1" class="collection with-header ranking-cell z-depth-1">
+              <li class="collection-header">
+                <h5>グランドマスター級</h5>
+              </li>
+            </ul>
+
+            <ul id="ranking-cells-2" class="collection with-header ranking-cell z-depth-1">
+              <li class="collection-header">
+                <h5>エキスパート級</h5>
+              </li>
+            </ul>
+
+            <ul id="ranking-cells-3" class="collection with-header ranking-cell z-depth-1">
+              <li class="collection-header">
+                <h5>エリート級</h5>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="content-bplist" class="container custom-content-bp" aria-label="プレイヤー戦闘力ランキング">
+        <ul id="bp-cells" class="collection with-header ranking-cell col s4 m4 z-depth-2">
+          <li id="guild-name" class="collection-header">
+            <h5>GuildName</h5>
+          </li>
+        </ul>
+      </section>
+    </main>
+  </div>
 
   <template id="ranking-cell">
     <li class="collection-item rankcell-root">

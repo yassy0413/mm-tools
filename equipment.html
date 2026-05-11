@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="">
+  <link rel="icon" href="./favicon.ico" type="image/x-icon">
+  <title>MM Group Guild Bp Ranking</title>
+
+  <!--Import Google Icon Font-->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+  <!--Import materialize.css-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+  <!--Import application css-->
+  <link type="text/css" rel="stylesheet" href="css/style.css?v=1.04" />
+</head>
+
+<body style="background-color: #eee; color: #fff">
+  <div class="wrapper">
+    <header class="header-title grey lighten-4 z-depth-2 center">
+      <a class="btn-floating waves-effect waves-light header-home-button" href="./" aria-label="ホーム">
+        <i class="material-icons">home</i>
+      </a>
+      <h1 class="header-heading">
+        <span class="black-text" id="header-title-a">
+          装備効果値 比較
+        </span>
+      </h1>
+    </header>
+
+    <section class="grey lighten-4 z-depth-2" aria-label="検索条件" id="equipment-section">
+      <div id="equipment-category" class="row center-align-vertical">
+        <p class="equipment-item-title">装備部位</p>
+        <div class="col">
+          <ul id="dropdown-slottype" class="dropdown-content"></ul>
+          <a class="btn dropdown-trigger dropdown-button" href="#!" data-target="dropdown-slottype"
+            id="dropdown-slottype-button">
+            <span id="dropdown-slottype-label">飾</span><i class="material-icons right">arrow_drop_down</i>
+          </a>
+        </div>
+      </div>
+      <hr class="equipment-separator">
+      <div id="equipment-1" class="row center-align-vertical">
+        <p class="equipment-item-title">メタトロン</p>
+        <div class="col">
+          <ul id="dropdown-level-1" class="dropdown-level dropdown-content"></ul>
+          <a class="btn dropdown-trigger dropdown-button dropdown-level-button" href="#!" data-target="dropdown-level-1"
+            id="dropdown-level-button-1">
+            <span class="dropdown-level-label" id="dropdown-level-label-1">Lv</span>
+            <i class="material-icons right">arrow_drop_down</i>
+          </a>
+        </div>
+        <div class="equipment-values">
+          <p class="equipment-value-1"></p>
+          <p class="equipment-value-2"></p>
+        </div>
+      </div>
+      <div id="equipment-2" class="row center-align-vertical">
+        <p class="equipment-item-title">ミカエル</p>
+        <div class="col">
+          <ul id="dropdown-level-2" class="dropdown-level dropdown-content"></ul>
+          <a class="btn dropdown-trigger dropdown-button dropdown-level-button" href="#!" data-target="dropdown-level-2"
+            id="dropdown-level-button-2">
+            <span class="dropdown-level-label" id="dropdown-level-label-2">Lv</span>
+            <i class="material-icons right">arrow_drop_down</i>
+          </a>
+        </div>
+        <div class="equipment-values">
+          <p class="equipment-value-1"></p>
+          <p class="equipment-value-2"></p>
+        </div>
+      </div>
+      <div id="equipment-3" class="row center-align-vertical">
+        <p class="equipment-item-title">サタン</p>
+        <div class="col">
+          <ul id="dropdown-level-3" class="dropdown-level dropdown-content"></ul>
+          <a class="btn dropdown-trigger dropdown-button dropdown-level-button" href="#!" data-target="dropdown-level-3"
+            id="dropdown-level-button-3">
+            <span class="dropdown-level-label" id="dropdown-level-label-3">Lv</span>
+            <i class="material-icons right">arrow_drop_down</i>
+          </a>
+        </div>
+        <div class="equipment-values">
+          <p class="equipment-value-1"></p>
+          <p class="equipment-value-2"></p>
+        </div>
+      </div>
+      <div id="equipment-4" class="row center-align-vertical">
+        <p class="equipment-item-title">ハニエル</p>
+        <div class="col">
+          <ul id="dropdown-level-4" class="dropdown-level dropdown-content"></ul>
+          <a class="btn dropdown-trigger dropdown-button dropdown-level-button" href="#!" data-target="dropdown-level-4"
+            id="dropdown-level-button-4">
+            <span class="dropdown-level-label" id="dropdown-level-label-4">Lv</span>
+            <i class="material-icons right">arrow_drop_down</i>
+          </a>
+        </div>
+        <div class="equipment-values">
+          <p class="equipment-value-1"></p>
+          <p class="equipment-value-2"></p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!--JavaScript at end of body for optimized loading-->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script type="module" src="modules/equipment.js?v=1.00"></script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z8CV5JWWLX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-Z8CV5JWWLX');
+  </script>
+</body>
+
+</html>

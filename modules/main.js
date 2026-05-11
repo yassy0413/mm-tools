@@ -31,7 +31,7 @@ $(document).ready(async () => {
     }
   };
 
-  ui.contentLinks.find("> div[id]").each(function () {
+  ui.contentResources.find("> div[id]").each(function () {
     const linkId = this.id;
 
     $(this).find("a").on("click", () => {
@@ -108,7 +108,8 @@ $(document).ready(async () => {
         createGuildRanking(ui.guildRankingCellContainer3, 32);
 
         ui.contentExplain.hide();
-        ui.contentLinks.hide();
+        ui.contentTools.hide();
+        ui.contentResources.hide();
         ui.contentRankings.show();
       } finally {
         isLoadingGuildRanking = false;
