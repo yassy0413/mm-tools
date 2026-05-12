@@ -297,6 +297,13 @@ body.materialize-dropdown-open .rankcell-root {
   }
 }
 
+@media (max-width: 400px) {
+  .rankcell-guildname {
+    font-size: 0.8em;
+    width: 130px;
+  }
+}
+
 /* Equipment */
 
 #equipment-section {
@@ -370,9 +377,20 @@ body.materialize-dropdown-open .rankcell-root {
   white-space: pre-line;
 }
 
+.equipment-value-tittle {
+  font-size: 0.8rem;
+}
+
 #equipment-explain-text {
   color: #000;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
+}
+
+@media (max-width: 400px) {
+  .equipment-item-title {
+    font-size: 0.7rem;
+    width: 60px;
+  }
 }
 
 /* Player Bp Ranking */

@@ -84,7 +84,7 @@ export class UI {
     const clone = this.rankingCellTemplate.content.cloneNode(true);
     const li = clone.querySelector("li");
     li.querySelector(".rankcell-rank").innerHTML = `${rank}`;
-    li.querySelector(".rankcell-world").innerHTML = ``;
+    li.querySelector(".rankcell-world").style.display = "none";
     li.querySelector(".rankcell-guildname").innerHTML = playerName;
     li.querySelector(".rankcell-bp").innerHTML = Number(bp).toLocaleString();
     this.playerRankingCellList.push(li);

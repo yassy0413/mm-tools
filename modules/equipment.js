@@ -111,8 +111,8 @@ const refreshValues = () => {
     const level = row.$levelControl.val();
     const data = getEquipmentData(level, row.rarity);
 
-    row.$value.text(`武具固有値\n${formatNumber(data?.value)}`);
-    row.$additionalValue.text(`追加効果\n${formatNumber(data?.additional_value)}`);
+    row.$value.empty().append($("<span>").addClass("equipment-value-tittle").text("武具固有値"), "\n", formatNumber(data?.value));
+    row.$additionalValue.empty().append($("<span>").addClass("equipment-value-tittle").text("追加効果"), "\n", formatNumber(data?.additional_value));
   }
 };
 
