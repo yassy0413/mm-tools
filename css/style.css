@@ -138,6 +138,18 @@ table.highlight tbody tr:hover {
   white-space: nowrap;
 }
 
+.region-select {
+  background-color: #26a69a;
+  border: 0;
+  border-radius: 2px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  height: 36px;
+  min-width: 72px;
+  padding: 0 28px 0 12px;
+}
+
 #group-label {
   display: block;
   font-size: 1.2em;
@@ -399,6 +411,10 @@ body.materialize-dropdown-open .rankcell-root {
   display: flex;
   justify-content: center;
   gap: 30px;
+}
+
+#player-bp-content-root {
+  display: none;
 }
 
 #player-bp-ranking-container {

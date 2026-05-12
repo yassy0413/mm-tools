@@ -165,7 +165,7 @@ const initDropdownLevel = () => {
 };
 
 $(document).ready(async () => {
-  equipmentMap = await GSheet.RequestEquipment() || new Map();
+  equipmentMap = (await GSheet.RequestEquipment()) || new Map();
   levelList = [...equipmentMap.keys()];
 
   initDropdownSlotType();

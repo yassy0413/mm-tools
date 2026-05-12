@@ -1,7 +1,6 @@
 ("use strict");
 import { Api } from "./api.js";
 import { Data } from "./data.js";
-import { initGuardedDropdown } from "./materialize-dropdown-guard.js";
 import { UI } from "./ui.js";
 
 $(document).ready(async () => {
@@ -44,7 +43,7 @@ $(document).ready(async () => {
     });
   });
 
-  // // Submit button
+  // Submit button
   $("#Submit").on("click", async (event) => {
     if (ui.submitButtonLabel.text() === "close") {
       ui.contentBpList.hide();
@@ -119,20 +118,16 @@ $(document).ready(async () => {
     }
   });
 
-  // DropDown Region
-  const $dropdown = $("#dropdown-servers");
-  $dropdown.empty();
+  // Region select
+  const $regionSelect = $("#region-select");
+  $regionSelect.empty();
   for (const key in data.regionMap) {
-    $dropdown.append(`<li><a href="#!">${data.regionMap[key]}</a></li>`);
+    $("<option>").val(key).text(data.regionMap[key]).appendTo($regionSelect);
   }
+  $regionSelect.val(String(data.regionId));
 
-  initGuardedDropdown($("#dropdownButton"), $dropdown);
-
-  $("#dropdown-servers li a").click(function () {
-    const selectedText = $(this).text();
-    $("#dropdownButton").contents().first()[0].nodeValue = selectedText;
-
-    data.setRegionId(Object.keys(data.regionMap).find((key) => data.regionMap[key] === selectedText));
+  $regionSelect.on("change", function () {
+    data.setRegionId($(this).val());
     ui.updateGroupLabel(data.groupId);
   });
 });

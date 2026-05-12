@@ -1,6 +1,5 @@
 ("use strict");
 import { GSheet } from "./gsheet.js";
-import { initGuardedDropdown } from "./materialize-dropdown-guard.js";
 
 const CURRENT_REGION_KEY = "player_bp_ranking_region";
 const WORLD_ID_KEY = "player_bp_ranking_world_id";
@@ -19,7 +18,7 @@ const formatTowerNumber = (value) => Number(value) === 0 ? "" : value;
 const getRegionText = (value) =>
   String(value ?? "")
     .match(/[a-zA-Z]+/)?.[0]
-    ?.toUpperCase() ?? "";
+    ?.toLowerCase() ?? "";
 
 const playerDataColumns = [
   { key: "ranking", className: "ranking" },
@@ -58,36 +57,32 @@ const clearPlayerData = () => {
   $playerBpRankingContainer.replaceChildren();
 };
 
-const initRegionDropdown = (regionList) => {
-  const $dropdown = $("#dropdown-servers");
-  const $dropdownButton = $("#dropdownButton");
-  $dropdown.empty();
+const initRegionSelect = () => {
+  const $regionSelect = $("#region-select");
+  $regionSelect.empty();
 
-  regionList = bpRankingList.map((playerData) => playerData.world);
+  let regionList = bpRankingList.map((playerData) => playerData.world);
   regionList = [...new Set(regionList.map(getRegionText).filter(Boolean))];
   regionList.unshift("");
   for (const region of regionList) {
-    $dropdown.append(`<li><a href="#!">${region}</a></li>`);
+    $("<option>").val(region).text(region || "all").appendTo($regionSelect);
   }
 
   const setCurrentRegion = (region) => {
     currentRegion = region;
     localStorage.setItem(CURRENT_REGION_KEY, currentRegion);
-    $dropdownButton.contents().first()[0].nodeValue = currentRegion;
+    $regionSelect.val(currentRegion);
   };
 
   const savedRegionValue = localStorage.getItem(CURRENT_REGION_KEY);
   const savedRegion = getRegionText(savedRegionValue);
-  const buttonRegion = getRegionText($dropdownButton.contents().first()[0]?.nodeValue);
-  const initialRegion = savedRegionValue !== null ? savedRegion : buttonRegion;
+  const initialRegion = savedRegionValue !== null ? savedRegion : "jp";
   setCurrentRegion(regionList.includes(initialRegion) ? initialRegion : "");
 
-  initGuardedDropdown($dropdownButton, $dropdown);
-
-  $("#dropdown-servers li a")
-    .off("click.region")
-    .on("click.region", (event) => {
-      setCurrentRegion($(event.currentTarget).text());
+  $regionSelect
+    .off("change.region")
+    .on("change.region", (event) => {
+      setCurrentRegion($(event.currentTarget).val());
       refreshPlayerList();
     });
 };
@@ -157,8 +152,10 @@ $(document).ready(async () => {
   $lastUpdatedLabel = $("#player-bp-ranking-last-updated");
   $lastUpdatedLabel.text(lastUpdated);
 
-  initRegionDropdown();
+  initRegionSelect();
   initWorldIdInputField();
   initGuildNameInputField();
   refreshPlayerList();
+
+  $("#player-bp-content-root").fadeIn(500);
 });

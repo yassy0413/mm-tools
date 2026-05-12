@@ -14,7 +14,7 @@
   <!--Import materialize.css-->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
   <!--Import application css-->
-  <link type="text/css" rel="stylesheet" href="css/style.css?v=1.11" />
+  <link type="text/css" rel="stylesheet" href="css/style.css?v=1.13" />
 </head>
 
 <body style="background-color: #eee; color: #fff">
@@ -40,13 +40,9 @@
       <section class="container grey lighten-4 z-depth-2" aria-label="検索条件" id="player-bp-ranking-toolbar">
         <div class="row center-align-vertical">
           <p id="player-bp-ranking-title">Filter</p>
-          <!-- Dropdown -->
+          <!-- Region -->
           <div class="col">
-            <ul id="dropdown-servers" class="dropdown-content"></ul>
-            <a class="btn dropdown-trigger dropdown-button" href="#!" data-target="dropdown-servers"
-              id="dropdownButton">
-              jp<i class="material-icons right">arrow_drop_down</i>
-            </a>
+            <select id="region-select" class="browser-default region-select" aria-label="Region"></select>
           </div>
 
           <!-- Input Field -->
@@ -62,7 +58,7 @@
         </div>
       </section>
     </div>
-    <section class="player-bp-ranking-table-scroll">
+    <section class="player-bp-ranking-table-scroll" id="player-bp-content-root">
       <table class="player-bp-ranking-table highlight">
         <thead>
           <!-- 順位	ワールド	ユーザー名	戦闘力	ランク	クエスト	塔	紅塔	藍塔	翠塔	黄塔	ギルド -->
@@ -119,7 +115,7 @@
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"
     integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <script type="module" src="modules/player_bp_ranking.js?v=1.02"></script>
+  <script type="module" src="modules/player_bp_ranking.js?v=1.03"></script>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z8CV5JWWLX"></script>
   <script>
