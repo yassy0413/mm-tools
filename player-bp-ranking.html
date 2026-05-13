@@ -14,7 +14,7 @@
   <!--Import materialize.css-->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
   <!--Import application css-->
-  <link type="text/css" rel="stylesheet" href="css/style.css?v=1.13" />
+  <link type="text/css" rel="stylesheet" href="css/style.css?v=1.14" />
 </head>
 
 <body style="background-color: #eee; color: #fff">
@@ -35,7 +35,7 @@
     <div class="wrapper">
       <div id="player-bp-ranking-explain">
         <p id="player-bp-ranking-last-updated"></p>
-        <p id="player-bp-ranking-remark">※属性塔は攻略20位まで取得可能</p>
+        <p id="player-bp-ranking-remark">※全体で10000位までが対象<br>※属性塔は攻略20位まで取得可能</p>
       </div>
       <section class="container grey lighten-4 z-depth-2" aria-label="検索条件" id="player-bp-ranking-toolbar">
         <div class="row center-align-vertical">
@@ -64,7 +64,7 @@
           <!-- 順位	ワールド	ユーザー名	戦闘力	ランク	クエスト	塔	紅塔	藍塔	翠塔	黄塔	ギルド -->
           <tr class="player-bp-rankcell-header">
             <th>順位</th>
-            <th>ワールド</th>
+            <th style="font-size: 0.6rem;">ワールド</th>
             <th>ユーザー名</th>
             <th>戦闘力</th>
             <th>ランク</th>
@@ -115,7 +115,7 @@
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"
     integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <script type="module" src="modules/player_bp_ranking.js?v=1.03"></script>
+  <script type="module" src="modules/player_bp_ranking.js?v=1.04"></script>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z8CV5JWWLX"></script>
   <script>

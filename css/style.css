@@ -440,19 +440,37 @@ body.materialize-dropdown-open .rankcell-root {
 
 #player-bp-ranking-explain {
   display: flex;
-  margin-bottom: 0;
+  justify-content: space-between;
+  margin: 0 12px;
 }
 
 #player-bp-ranking-last-updated {
   color: #000;
   font-size: 0.6rem;
-  margin-left: 12px;
+}
+
+.player-bp-ranking-last-updated-highlight {
+  animation: player-bp-ranking-last-updated-highlight 5s ease-in-out;
+}
+
+@keyframes player-bp-ranking-last-updated-highlight {
+  0% {
+    color: #000;
+  }
+
+  15%,
+  70% {
+    color: #26a69a;
+  }
+
+  100% {
+    color: #000;
+  }
 }
 
 #player-bp-ranking-remark {
   color: #000;
   font-size: 0.6rem;
-  margin-left: 12px;
 }
 
 .player-bp-ranking-guild-filter {
@@ -460,26 +478,24 @@ body.materialize-dropdown-open .rankcell-root {
 }
 
 .player-bp-ranking-table-scroll {
-  max-width: 100%;
+  max-width: 1000px;
   overflow-x: auto;
+  margin: 0 auto;
 }
 
 .player-bp-ranking-table {
+  max-width: 990px;
   color: #000;
   font-size: 0.8rem;
   min-width: max-content;
   margin: 0 10px 0 10px;
   border-left: 1px solid rgba(0, 0, 0, 0.12);
+  border-right: 1px solid rgba(0, 0, 0, 0.12);
 }
 
 .player-bp-ranking-table th,
 .player-bp-ranking-table td {
   border-right: 1px solid rgba(0, 0, 0, 0.12);
-}
-
-.player-bp-ranking-table th:last-child,
-.player-bp-ranking-table td:last-child {
-  border-right: 0;
 }
 
 .player-bp-rankcell-header {
@@ -488,11 +504,11 @@ body.materialize-dropdown-open .rankcell-root {
 }
 
 .player-bp-rankcell-ranking {
-  min-width: 40px;
+  width: 40px;
 }
 
 .player-bp-rankcell-world {
-  min-width: 40px;
+  width: 60px;
 }
 
 .player-bp-rankcell-name {

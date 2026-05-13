@@ -4,6 +4,7 @@ import { GSheet } from "./gsheet.js";
 const CURRENT_REGION_KEY = "player_bp_ranking_region";
 const WORLD_ID_KEY = "player_bp_ranking_world_id";
 const GUILD_NAME_KEY = "player_bp_ranking_guild_name";
+const LAST_UPDATED_KEY = "player_bp_ranking_last_updated";
 
 let $rankingCellTemplate;
 let $playerBpRankingContainer;
@@ -137,10 +138,25 @@ const refreshPlayerList = () => {
 
     fragment.append(createPlayerDataRow(playerData));
 
+    // これ以上は重い。。 todo: paging
     if (++count >= 1000) break;
   }
 
   $playerBpRankingContainer.append(fragment);
+};
+
+const highlightLastUpdatedIfChanged = (lastUpdated) => {
+  const currentLastUpdated = String(lastUpdated ?? "").trim();
+  if (!currentLastUpdated) return;
+
+  const savedLastUpdated = localStorage.getItem(LAST_UPDATED_KEY);
+  localStorage.setItem(LAST_UPDATED_KEY, currentLastUpdated);
+
+  if (savedLastUpdated === null || savedLastUpdated === currentLastUpdated) return;
+
+  $lastUpdatedLabel.removeClass("player-bp-ranking-last-updated-highlight");
+  void $lastUpdatedLabel[0]?.offsetWidth;
+  $lastUpdatedLabel.addClass("player-bp-ranking-last-updated-highlight");
 };
 
 $(document).ready(async () => {
@@ -151,6 +167,7 @@ $(document).ready(async () => {
   $playerBpRankingContainer = document.querySelector("#player-bp-ranking-container");
   $lastUpdatedLabel = $("#player-bp-ranking-last-updated");
   $lastUpdatedLabel.text(lastUpdated);
+  highlightLastUpdatedIfChanged(lastUpdated);
 
   initRegionSelect();
   initWorldIdInputField();
