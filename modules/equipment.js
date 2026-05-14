@@ -4,6 +4,7 @@ import { GSheet } from "./gsheet.js";
 const SLOT_TYPE_KEY = "equipment_slottype";
 const METATRON_LEVEL_KEY = "equipment_metatron_level";
 const DEFAULT_METATRON_LEVEL = 240;
+const RARITY_COUNT = 5;
 const slotTypeMap = ["飾", "手", "頭", "胴", "足"];
 let equipmentMap = new Map();
 let levelList = [];
@@ -12,7 +13,7 @@ let equipmentRows = [];
 
 const getEquipmentData = (level, rarity) => {
   const equipmentGroup = equipmentMap.get(Number(level));
-  const dataIndex = selectedSlotTypeIndex * 4 + (4 - rarity);
+  const dataIndex = selectedSlotTypeIndex * RARITY_COUNT + (RARITY_COUNT - rarity);
   return equipmentGroup?.datalist[dataIndex];
 };
 
@@ -69,6 +70,13 @@ const saveSlotType = (slotType) => {
 
 const saveMetatronLevel = (level) => {
   localStorage.setItem(METATRON_LEVEL_KEY, level);
+};
+
+const saveCurrentMetatronLevel = () => {
+  const metatronRow = getMetatronRow();
+  if (metatronRow) {
+    saveMetatronLevel(metatronRow.$levelControl.val());
+  }
 };
 
 const restoreSavedSelection = () => {
@@ -156,10 +164,8 @@ const initDropdownLevel = () => {
     const selectedValue = $dropdownLevel.val();
     const changedRarity = getRarityFromDropdown($dropdownLevel);
 
-    if (changedRarity === 1) {
-      saveMetatronLevel(selectedValue);
-    }
     syncLevelsByValue(selectedValue, changedRarity);
+    saveCurrentMetatronLevel();
     refreshValues();
   });
 };

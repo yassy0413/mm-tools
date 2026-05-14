@@ -9,21 +9,23 @@ class EquipmentDataGroup {
   constructor(row) {
     this.datalist = [];
 
+    const slotTypeCount = 5;
+    const rarityCount = 5;
+    const columnsPerRarity = 2;
+    const spacerColumnCount = 1;
+    const columnsPerSlotType = rarityCount * columnsPerRarity + spacerColumnCount;
+
     // 1列目がLvなので、データ開始は 1
-    this.addData(row, 1);
-    this.addData(row, 10);
-    this.addData(row, 19);
-    this.addData(row, 28);
-    this.addData(row, 37);
+    for (let slotTypeIndex = 0; slotTypeIndex < slotTypeCount; slotTypeIndex += 1) {
+      this.addData(row, 1 + slotTypeIndex * columnsPerSlotType, rarityCount);
+    }
   }
 
-  addData(row, beginColumn) {
-    const v = row.slice(beginColumn, beginColumn + 8);
-
-    this.datalist.push(new EquipmentData(v[0], v[1]));
-    this.datalist.push(new EquipmentData(v[2], v[3]));
-    this.datalist.push(new EquipmentData(v[4], v[5]));
-    this.datalist.push(new EquipmentData(v[6], v[7]));
+  addData(row, beginColumn, rarityCount) {
+    for (let rarityIndex = 0; rarityIndex < rarityCount; rarityIndex += 1) {
+      const valueIndex = beginColumn + rarityIndex * 2;
+      this.datalist.push(new EquipmentData(row[valueIndex], row[valueIndex + 1]));
+    }
   }
 }
 
@@ -158,7 +160,7 @@ export class GSheet {
   }
 
   static async RequestEquipment() {
-    const equipmentCsv = await this.Request("1773042965");
+    const equipmentCsv = await this.Request("1002246187");
 
     if (!equipmentCsv) {
       return null;
@@ -173,7 +175,7 @@ export class GSheet {
         new EquipmentDataGroup(row),
       ]),
     );
-    
+
     return equipmentMap;
   }
 
