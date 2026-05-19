@@ -160,19 +160,29 @@ const highlightLastUpdatedIfChanged = (lastUpdated) => {
 };
 
 $(document).ready(async () => {
-  const { bpRankingList: bpRankingListData = [], lastUpdated = "" } = (await GSheet.RequestBpRanking()) || {};
-  bpRankingList = bpRankingListData;
+  const $loadingIndicator = $("#loading-indicator");
+  const loadingIndicatorTimer = window.setTimeout(() => {
+    $loadingIndicator.addClass("is-visible");
+  }, 500);
 
-  $rankingCellTemplate = document.querySelector("#player-bp-ranking-cell");
-  $playerBpRankingContainer = document.querySelector("#player-bp-ranking-container");
-  $lastUpdatedLabel = $("#player-bp-ranking-last-updated");
-  $lastUpdatedLabel.text(lastUpdated);
-  highlightLastUpdatedIfChanged(lastUpdated);
+  try {
+    const { bpRankingList: bpRankingListData = [], lastUpdated = "" } = (await GSheet.RequestBpRanking()) || {};
+    bpRankingList = bpRankingListData;
 
-  initRegionSelect();
-  initWorldIdInputField();
-  initGuildNameInputField();
-  refreshPlayerList();
+    $rankingCellTemplate = document.querySelector("#player-bp-ranking-cell");
+    $playerBpRankingContainer = document.querySelector("#player-bp-ranking-container");
+    $lastUpdatedLabel = $("#player-bp-ranking-last-updated");
+    $lastUpdatedLabel.text(lastUpdated);
+    highlightLastUpdatedIfChanged(lastUpdated);
 
-  $("#player-bp-content-root").fadeIn(500);
+    initRegionSelect();
+    initWorldIdInputField();
+    initGuildNameInputField();
+    refreshPlayerList();
+
+    $("#player-bp-content-root").fadeIn(500);
+  } finally {
+    window.clearTimeout(loadingIndicatorTimer);
+    $loadingIndicator.removeClass("is-visible");
+  }
 });

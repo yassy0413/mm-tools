@@ -171,12 +171,22 @@ const initDropdownLevel = () => {
 };
 
 $(document).ready(async () => {
-  equipmentMap = (await GSheet.RequestEquipment()) || new Map();
-  levelList = [...equipmentMap.keys()];
+  const $loadingIndicator = $("#loading-indicator");
+  const loadingIndicatorTimer = window.setTimeout(() => {
+    $loadingIndicator.addClass("is-visible");
+  }, 500);
 
-  initDropdownSlotType();
-  initDropdownLevel();
-  cacheElements();
-  restoreSavedSelection();
-  refreshValues();
+  try {
+    equipmentMap = (await GSheet.RequestEquipment()) || new Map();
+    levelList = [...equipmentMap.keys()];
+
+    initDropdownSlotType();
+    initDropdownLevel();
+    cacheElements();
+    restoreSavedSelection();
+    refreshValues();
+  } finally {
+    window.clearTimeout(loadingIndicatorTimer);
+    $loadingIndicator.removeClass("is-visible");
+  }
 });

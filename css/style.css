@@ -37,6 +37,20 @@ table th {
   padding: 6px 10px;
 }
 
+/* Loading Indicator */
+
+#loading-indicator {
+  display: none;
+  position: relative;
+  left: calc(50% - 25px);
+  top: 40px;
+  height: 0px;
+}
+
+#loading-indicator.is-visible {
+  display: block;
+}
+
 #content-root {
   display: none;
 }
