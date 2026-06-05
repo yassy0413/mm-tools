@@ -6,3 +6,16 @@
 
 ギルドのセルをクリックすると、そのギルドに所属していて戦力ランキングにエントリーしているメンバーの戦闘力リストが表示されます。
 
+# GitHub Pages 用の追加設定
+
+## vite.config.cs
+
+base: '/{repository-name}/',
+build: {
+outDir: 'docs',
+},
+
+## package.json
+
+"homepage": "https://yassy0413.github.io/{repository-name}/",
+を追加

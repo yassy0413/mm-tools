@@ -1,0 +1,71 @@
+import { useEffect, useState } from 'react'
+
+export default function LoadingIndicator() {
+  const [visible, setVisible] = useState(false)
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setVisible(true)
+    }, 500)
+
+    return () => clearTimeout(timer)
+  }, [])
+
+  if (!visible) {
+    return null
+  }
+
+  return (
+    <div className="loading-indicator">
+      <div className="preloader-wrapper active">
+        <div className="spinner-layer spinner-blue">
+          <div className="circle-clipper left">
+            <div className="circle"></div>
+          </div>
+          <div className="gap-patch">
+            <div className="circle"></div>
+          </div>
+          <div className="circle-clipper right">
+            <div className="circle"></div>
+          </div>
+        </div>
+
+        <div className="spinner-layer spinner-red">
+          <div className="circle-clipper left">
+            <div className="circle"></div>
+          </div>
+          <div className="gap-patch">
+            <div className="circle"></div>
+          </div>
+          <div className="circle-clipper right">
+            <div className="circle"></div>
+          </div>
+        </div>
+
+        <div className="spinner-layer spinner-yellow">
+          <div className="circle-clipper left">
+            <div className="circle"></div>
+          </div>
+          <div className="gap-patch">
+            <div className="circle"></div>
+          </div>
+          <div className="circle-clipper right">
+            <div className="circle"></div>
+          </div>
+        </div>
+
+        <div className="spinner-layer spinner-green">
+          <div className="circle-clipper left">
+            <div className="circle"></div>
+          </div>
+          <div className="gap-patch">
+            <div className="circle"></div>
+          </div>
+          <div className="circle-clipper right">
+            <div className="circle"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}

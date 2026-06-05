@@ -1,0 +1,28 @@
+.worldSelector {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+  margin: 0 30px 10px 30px;
+
+  & input:disabled,
+  & select:disabled {
+    color: #ccc;
+    -webkit-text-fill-color: #aaa;
+  }
+}
+
+.worldSearchInput {
+  & input {
+    color: var(--text-h);
+  }
+}
+
+.worldSearchRegionSelector {
+  min-width: 60px;
+}
+
+.worldSearchInputLabel {
+  white-space: nowrap;
+  font-size: 0.8rem;
+}

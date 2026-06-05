@@ -1,0 +1,59 @@
+.playerBpRanking {
+  width: 100%;
+  overflow-x: auto;
+  padding: 0 8px;
+}
+
+.playerBpRankingTable {
+  width: max-content;
+  border: 1px solid #333;
+  margin: 0 auto;
+
+  & th,
+  & td {
+    border: 1px solid #333;
+    padding: 4px 8px;
+  }
+
+  & th {
+    color: #26a69a;
+  }
+}
+
+.playerBpRankcellHeader {
+  height: 36px;
+  color: #060;
+  font-size: 0.9rem;
+}
+
+.playerBpRankingContainer {
+  color: var(--text-x);
+  font-size: 0.8rem;
+}
+
+.playerBpRankcell {
+  height: 0px;
+}
+
+.playerBpRankcellRanking {
+  /* width: 20px; */
+}
+
+.playerBpRankcellWorld {
+  /* width: 60px; */
+  font-size: 0.75rem;
+}
+
+.playerBpRankcellName {
+  min-width: 120px;
+  font-size: 0.7rem;
+}
+
+.playerBpRankcellBp {
+  font-size: 0.7rem;
+}
+
+.playerBpRankcellGuildName {
+  min-width: 100px;
+  font-size: 0.7rem;
+}

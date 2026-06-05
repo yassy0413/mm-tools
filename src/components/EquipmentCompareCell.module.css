@@ -1,0 +1,37 @@
+.equipmentCompareTargetCell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 16px auto;
+  color: var(--text-h);
+}
+
+.equipmentCellTitle {
+  font-size: 0.9rem;
+  width: 70px;
+  margin-right: 8px;
+}
+
+.equipmentCellLevel {
+  width: 80px;
+  margin-right: 20px;
+}
+
+.equipmentValue {
+  width: 100px;
+  margin: 0;
+  display: flex;
+  justify-items: center;
+  flex-direction: column;
+  text-align: left;
+}
+
+.equipmentValueTitle {
+  font-size: 0.78rem;
+  line-height: 1.1rem;
+}
+
+.equipmentValueNumber {
+  /* font-size: 1.1rem; */
+  font-size: 0.88rem;
+}

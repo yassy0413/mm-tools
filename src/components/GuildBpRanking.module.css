@@ -1,0 +1,29 @@
+.guildBpRankingTableRoot {
+  width: 100%;
+  overflow-x: auto;
+  padding: 0 8px;
+}
+
+.guildBpRankingTable {
+  width: max-content;
+  border: 1px solid #333;
+  margin: 0 auto;
+
+  & th,
+  & td {
+    border: 1px solid #333;
+  }
+
+  & th {
+    color: #26a69a;
+  }
+}
+
+.guildBpRankingHeader {
+  font-size: 1.4rem;
+  color: white;
+  width: 80%;
+
+  text-align: center;
+  vertical-align: middle;
+}

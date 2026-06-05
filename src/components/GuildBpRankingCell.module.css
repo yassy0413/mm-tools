@@ -1,0 +1,50 @@
+.guildRankingCell {
+  min-width: 33%;
+  height: 16px;
+
+  flex-shrink: 0;
+  color: var(--text-h);
+  margin: 0 8px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+}
+
+.guildRankingCellRank {
+  font-family: Roboto, 'Courier New', Courier, monospace;
+  font-size: 0.75rem;
+  font-weight: bold;
+  width: 12px;
+}
+
+.guildRankingCellWorld {
+  font-family: Roboto, 'Courier New', Courier, monospace;
+  font-size: 0.75rem;
+  font-weight: bold;
+  width: 28px;
+}
+
+.guildRankingCellGuildName {
+  font-size: 0.8rem;
+  width: 140px;
+
+  @media (max-width: 400px) {
+    font-size: 0.64rem;
+    width: 100px;
+  }
+}
+
+.guildRankingCellBp {
+  font-family: Arial, Roboto, 'Courier New', Courier, monospace;
+  font-size: 0.9rem;
+  text-align: right;
+  margin-left: auto;
+  font-weight: bold;
+  letter-spacing: 0.05rem;
+
+  @media (max-width: 400px) {
+    font-size: 0.8rem;
+  }
+}

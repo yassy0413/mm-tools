@@ -1,0 +1,21 @@
+.playerBpRankingExplain {
+  display: flex;
+  justify-content: space-between;
+  margin: 4px 20px 0 20px;
+  color: var(--text-h);
+  line-height: 1.1rem;
+}
+
+.playerBpRankingLastUpdated {
+  font-size: 0.6rem;
+  text-align: left;
+}
+
+.playerBpRankingLastUpdatedHighlight {
+  animation: player-bp-ranking-last-updated-highlight 5s ease-in-out;
+}
+
+.playerBpRankingRemark {
+  font-size: 0.6rem;
+  text-align: right;
+}

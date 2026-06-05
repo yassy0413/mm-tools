@@ -1,0 +1,45 @@
+.equipmentExplainText {
+  /* color: #000; */
+  font-size: 0.8rem;
+  margin: 20px 20px 10px 20px;
+  text-align: center;
+
+  /* @media (max-width: 400px) {
+    font-size: 0.7rem;
+    width: 60px;
+  } */
+}
+
+.equipmentTargetValue {
+  margin: 0 auto 20px auto;
+  width: 240px;
+
+  & input {
+    color: var(--text-h);
+  }
+}
+
+.equipmentSeparator {
+  width: 100%;
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: 8px 0 16px 0;
+}
+
+.equipmentSlotTabGroup {
+}
+
+.equipmentSlotTab {
+  width: 60px;
+  padding: 6px 12px;
+  margin: 0 4px;
+  border-radius: 16px;
+  border: none;
+  background-color: #dfdfdf;
+  color: #9f9f9f;
+}
+
+.equipmentSlotTabActive {
+  background-color: #26a69a !important;
+  color: #fff !important;
+}

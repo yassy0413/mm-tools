@@ -1,0 +1,16 @@
+.linkCard {
+  width: calc(100% - 40px);
+  max-width: 880px;
+  margin: 20px auto;
+}
+
+.linkCard img,
+.youtubeFrame {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
+
+.youtubeFrame {
+  border: 0;
+}

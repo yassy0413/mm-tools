@@ -1,0 +1,17 @@
+.explainRoot {
+  font-size: 0.85rem;
+  margin: 10px 10px 40px 10px;
+  letter-spacing: 0.12rem;
+}
+
+.explainRedText {
+  color: #ee3333;
+  font-size: 1em;
+  font-weight: bold;
+}
+
+.explainGreenText {
+  color: #33cc33;
+  font-size: 1em;
+  font-weight: bold;
+}
