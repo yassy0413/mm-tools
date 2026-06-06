@@ -14,6 +14,7 @@ export default function GuildBpRanking() {
   }
 
   const bpList = guildRanking.guildBpRanking
+  console.log(bpList)
 
   const onClickCell = (worldId: number, guildId: number, guildName: string) => {
     const args = new URLSearchParams({

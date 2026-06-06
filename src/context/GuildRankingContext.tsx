@@ -57,9 +57,28 @@ export function GuildRankingProvider({ children, regionId, worldId }: Props) {
       }
 
       // 任意グループに属する全ワールドの、ギルドランキングを取得
-      const jsonDataList = await Api.Requests(
+      let jsonDataList = await Api.Requests(
         group.map((worldId) => `${worldId}/guild_ranking/latest`),
       )
+
+      // bp[]が空の時があるので、その場合はキャッシュをクリアして再取得する
+      if (
+        jsonDataList.some((jsonData) => jsonData.data.rankings.bp?.length === 0)
+      ) {
+        // retry clean
+        jsonDataList = await Api.Requests(
+          group.map((worldId) => `${worldId}/guild_ranking/latest`),
+          { clean: true },
+        )
+
+        if (
+          jsonDataList.some(
+            (jsonData) => jsonData.data.rankings.bp?.length === 0,
+          )
+        ) {
+          return []
+        }
+      }
 
       // ギルドデータに対象の属するワールド番号を付与
       const guildBpRanking: GuildBpRecord[] = jsonDataList

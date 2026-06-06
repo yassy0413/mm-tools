@@ -4,15 +4,24 @@ type FreshCallback = () => void
 
 const cache = new TtlCache<string>((x) => `api_json_${x}`)
 
+type Param = {
+  cacheMs?: number
+  onFresh?: FreshCallback
+  clean?: boolean
+}
+
 export default class Api {
   static API_URL = 'https://api.mentemori.icu'
 
   static async Request(
     path: string,
-    cacheMs = TtlCache.DEFAULT_CACHE_MS,
-    onFresh: FreshCallback = () => {},
+    {
+      cacheMs = TtlCache.DEFAULT_CACHE_MS,
+      onFresh = () => {},
+      clean = false,
+    }: Param = {},
   ) {
-    const cachedJson = cache.get(path, cacheMs)
+    const cachedJson = clean ? null : cache.get(path, cacheMs)
     if (cachedJson) {
       return cachedJson
     }
@@ -36,11 +45,18 @@ export default class Api {
 
   static async Requests(
     paths: string[],
-    cacheMs = TtlCache.DEFAULT_CACHE_MS,
-    onFresh: FreshCallback = () => {},
+    {
+      cacheMs = TtlCache.DEFAULT_CACHE_MS,
+      onFresh = () => {},
+      clean = false,
+    }: Param = {},
   ) {
     return await Promise.all(
-      paths.map((path) => this.Request(path, cacheMs, onFresh)),
+      paths.map((path) => this.Request(path, { cacheMs, onFresh, clean })),
     )
+  }
+
+  static ClearCache(path: string) {
+    cache.remove(path)
   }
 }

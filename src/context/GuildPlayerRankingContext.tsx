@@ -7,7 +7,6 @@ import {
 } from 'react'
 import { useWorld } from './WorldContext'
 import Api from '../utils/Api'
-import TtlCache from '../utils/TtlCache'
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const guildBpRankingMap: Record<number, PlayerRecord[]> = {}
@@ -81,11 +80,9 @@ export default function GuildPlayerRankingProvider({
     const invoke = async () => {
       if (!guildWorldIdSet.has(worldId)) {
         // 任意ワールドの戦闘力ランキングにエントリーしているプレーヤー情報を回収
-        const jsonData = await Api.Request(
-          `${worldId}/player_ranking/latest`,
-          TtlCache.DEFAULT_CACHE_MS,
-          clearCache,
-        )
+        const jsonData = await Api.Request(`${worldId}/player_ranking/latest`, {
+          onFresh: clearCache,
+        })
 
         const playerBpRanking: PlayerBpRecord[] =
           jsonData.data.rankings.bp ?? []
