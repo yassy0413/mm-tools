@@ -107,8 +107,6 @@ export default function GuildPlayerRankingProvider({
 
         // このワールドは取得済みの状態にする
         guildWorldIdSet.add(worldId)
-      } else {
-        console.log(`cache hit! wid:${worldId}`)
       }
 
       const targetGuildPlayerBpRanking = guildBpRankingMap[guildId]

@@ -7,7 +7,7 @@ export default class TtlCache<TKey> {
     this.makeKey = makeKey
   }
 
-  get(key: TKey, cacheMs = TtlCache.DEFAULT_CACHE_MS, allowExpired = true) {
+  get(key: TKey, cacheMs = TtlCache.DEFAULT_CACHE_MS, allowExpired = false) {
     const uniqueKey = this.makeKey(key)
     const cacheText = localStorage.getItem(uniqueKey)
     if (cacheText === null) {
@@ -34,10 +34,6 @@ export default class TtlCache<TKey> {
       uniqueKey,
       JSON.stringify({ data: data, savedAt: Date.now() }),
     )
-    if (import.meta.env.DEV) {
-      console.log(`set cache. [${key}}][${uniqueKey}}]`)
-      console.log(data)
-    }
   }
 
   remove(key: TKey) {
