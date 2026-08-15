@@ -5,15 +5,11 @@ import styles from './GachaAppearance.module.css'
 
 type Props = {
   characterName: string
-  sortByLastStart: boolean
 }
 
 const formatDate = (dateTime: string) => dateTime.slice(0, 10).replace(/-/g, '/')
 
-export default function GachaAppearance({
-  characterName,
-  sortByLastStart,
-}: Props) {
+export default function GachaAppearance({ characterName }: Props) {
   const { characters, loading } = useGachaAppearance()
 
   if (loading) {
@@ -23,13 +19,11 @@ export default function GachaAppearance({
   const filteredCharacters = characters.filter((character) =>
     character.name.includes(characterName),
   )
-  if (sortByLastStart) {
-    filteredCharacters.sort((a, b) => {
-      const aLastStart = a.periods.at(-1)?.start ?? ''
-      const bLastStart = b.periods.at(-1)?.start ?? ''
-      return bLastStart.localeCompare(aLastStart)
-    })
-  }
+  filteredCharacters.sort((a, b) => {
+    const aLastStart = a.periods.at(-1)?.start ?? ''
+    const bLastStart = b.periods.at(-1)?.start ?? ''
+    return bLastStart.localeCompare(aLastStart)
+  })
   const maximumAppearances = Math.max(
     0,
     ...filteredCharacters.map((character) => character.periods.length),

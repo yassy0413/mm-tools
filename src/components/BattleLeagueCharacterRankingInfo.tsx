@@ -17,7 +17,9 @@ export default function BattleLeagueCharacterRankingInfo() {
           {battleLeagueCharacterRanking.lastUpdated}
         </p>
         <p className={styles.playerBpRankingRemark}>
-          バトリランキング２０位までで、活躍しているキャラクターランキング
+          バトリランキング２０位までで、
+          <br />
+          活躍しているキャラクターランキング
         </p>
       </div>
     </div>

@@ -20,5 +20,7 @@
     padding: 0;
     margin: 0;
     letter-spacing: 0.02rem;
+    overflow: hidden;
+    white-space: nowrap;
   }
 }

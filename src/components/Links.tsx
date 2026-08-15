@@ -33,28 +33,6 @@ export default function Links() {
           allowFullScreen
         ></iframe>
       </div>
-
-      <div id="link_youtube_enjack" className={styles.linkCard}>
-        <iframe
-          className={styles.youtubeFrame}
-          src="https://www.youtube.com/embed/9YlkizeB7fc?si=jb_wrCc0ZE1kCRM6"
-          title="YouTube video player"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerPolicy="strict-origin-when-cross-origin"
-          allowFullScreen
-        ></iframe>
-      </div>
-
-      <div id="link_youtube_rei" className={styles.linkCard}>
-        <iframe
-          className={styles.youtubeFrame}
-          src="https://www.youtube.com/embed/P1Ee-6DAMRg?si=ETnWM-Qb4NxuFLxY"
-          title="YouTube video player"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerPolicy="strict-origin-when-cross-origin"
-          allowFullScreen
-        ></iframe>
-      </div>
     </div>
   )
 }

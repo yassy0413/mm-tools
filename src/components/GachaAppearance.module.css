@@ -24,11 +24,7 @@
 }
 
 .character {
-  position: sticky;
-  left: 0;
-  z-index: 1;
   min-width: 150px;
-  background: var(--bg);
   text-align: left !important;
   vertical-align: middle;
 }
