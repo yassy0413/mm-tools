@@ -20,10 +20,12 @@ type GuildBpRecord = GuildBpRawRecord & {
 
 type GuildRankingData = {
   guildBpRanking: GuildBpRecord[]
+  globalGvgGuildGroupMap: Record<number, number>
 }
 
 const initialGuildRankingData: GuildRankingData = {
   guildBpRanking: [],
+  globalGvgGuildGroupMap: {},
 }
 
 export type GuildRankingContextType = GuildRankingData & {
@@ -51,15 +53,25 @@ export function GuildRankingProvider({ children, regionId, worldId }: Props) {
     }
 
     const invoke = async () => {
-      const group = worldData.groupMap[worldData.makeGroupId(regionId, worldId)]
+      const groupId = worldData.makeGroupId(regionId, worldId)
+      const group = worldData.groupMap[groupId]
       if (group == undefined) {
         return []
       }
 
       // 任意グループに属する全ワールドの、ギルドランキングを取得
-      let jsonDataList = await Api.Requests(
-        group.map((worldId) => `${worldId}/guild_ranking/latest`),
+      const guildRankingPaths = group.map(
+        (groupWorldId) => `${groupWorldId}/guild_ranking/latest`,
       )
+      const globalGvgPaths = [1, 2, 3].flatMap((gvgClass) =>
+        [0, 1, 2, 3].map(
+          (block) => `wg/${groupId}/globalgvg/${gvgClass}/${block}/latest`,
+        ),
+      )
+      let jsonDataList = await Api.Requests(guildRankingPaths)
+      const globalGvgDataList = worldData.globalGvgGroupIds.has(groupId)
+        ? await Api.Requests(globalGvgPaths)
+        : []
 
       // bp[]が空の時があるので、その場合はキャッシュをクリアして再取得する
       if (
@@ -67,7 +79,7 @@ export function GuildRankingProvider({ children, regionId, worldId }: Props) {
       ) {
         // retry clean
         jsonDataList = await Api.Requests(
-          group.map((worldId) => `${worldId}/guild_ranking/latest`),
+          guildRankingPaths,
           { clean: true },
         )
 
@@ -92,8 +104,22 @@ export function GuildRankingProvider({ children, regionId, worldId }: Props) {
         })
         .sort((a, b) => b.bp - a.bp)
 
+      const globalGvgGuildGroupMap: Record<number, number> = {}
+      for (const [index, globalGvgData] of globalGvgDataList.entries()) {
+        const guilds = globalGvgData?.data?.guilds
+        if (!guilds) {
+          continue
+        }
+
+        const block = index % 4
+        for (const guildId of Object.keys(guilds)) {
+          globalGvgGuildGroupMap[Number(guildId)] = block
+        }
+      }
+
       setGuildRankingData({
         guildBpRanking: guildBpRanking,
+        globalGvgGuildGroupMap: globalGvgGuildGroupMap,
       })
 
       setLoading(false)

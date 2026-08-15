@@ -1,0 +1,80 @@
+.battleLeagueCharacterRanking {
+  width: 100%;
+  overflow-x: auto;
+  padding: 0 8px;
+}
+
+.battleLeagueCharacterRankingTable {
+  width: max-content;
+  border: 1px solid #333;
+  margin: 0 auto;
+
+  & th,
+  & td {
+    border: 1px solid #333;
+    padding: 4px 8px;
+  }
+
+  & th {
+    color: #26a69a;
+  }
+}
+
+.battleLeagueCharacterRankcellHeader {
+  height: 36px;
+  color: #060;
+  font-size: 0.9rem;
+
+  & th:not(:first-child) {
+    min-width: 54px;
+    padding: 4px;
+    text-align: center;
+    white-space: nowrap;
+  }
+}
+
+.battleLeagueCharacterRankingContainer {
+  color: var(--text-x);
+  font-size: 0.8rem;
+}
+
+.battleLeagueCharacterRankcell {
+  height: 0;
+}
+
+.battleLeagueCharacterRankcellWorld {
+  min-width: 72px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.battleLeagueCharacterRankcellCharacter {
+  width: 54px;
+  padding: 4px !important;
+}
+
+.battleLeagueCharacterRankcellCharacterHighlight {
+  background: var(--accent-bg);
+}
+
+.battleLeagueCharacterRankcellContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.battleLeagueCharacterRankcellIcon {
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--code-bg);
+}
+
+.battleLeagueCharacterRankcellCount {
+  line-height: 0.9rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+}

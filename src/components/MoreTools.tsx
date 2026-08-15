@@ -17,6 +17,15 @@ export default function MoreTools() {
       >
         全鯖プレーヤー戦力ランキング！
       </Link>
+      <Link
+        to={ROUTE.BATTLE_LEAGUE_CHARACTER_RANKING}
+        className="btn waves-effect waves-light"
+      >
+        バトルリーグ使用キャラランキング
+      </Link>
+      <Link to={ROUTE.GACHA_APPEARANCE} className="btn waves-effect waves-light">
+        ガチャ登場日
+      </Link>
     </div>
   )
 }

@@ -1,0 +1,21 @@
+.gachaAppearanceFilter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  margin: 20px 0;
+
+  & input {
+    width: min(100%, 320px);
+    min-width: 0;
+  }
+}
+
+.sortCheckbox {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-x);
+  font-size: 0.8rem;
+  white-space: nowrap;
+}

@@ -29,6 +29,9 @@
 .guildRankingCellGuildName {
   font-size: 0.8rem;
   width: 140px;
+  overflow: hidden;
+  line-height: 1.1;
+  white-space: nowrap;
 
   @media (max-width: 400px) {
     font-size: 0.64rem;

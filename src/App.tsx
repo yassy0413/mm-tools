@@ -6,6 +6,8 @@ import GuildBpRankingPage from './pages/GuildBpRankingPage'
 import GuildPlayerBpRankingPage from './pages/GuildPlayerBpRankingPage'
 import EquipmentComparePage from './pages/EquipmentComparePage'
 import PlayerBpRankingPage from './pages/PlayerBpRankingPage'
+import BattleLeagueCharacterRankingPage from './pages/BattleLeagueCharacterRankingPage'
+import GachaAppearancePage from './pages/GachaAppearancePage'
 
 function App() {
   return (
@@ -28,6 +30,14 @@ function App() {
           <Route
             path={ROUTE.PLAYER_BP_RANKING}
             element={<PlayerBpRankingPage />}
+          ></Route>
+          <Route
+            path={ROUTE.BATTLE_LEAGUE_CHARACTER_RANKING}
+            element={<BattleLeagueCharacterRankingPage />}
+          ></Route>
+          <Route
+            path={ROUTE.GACHA_APPEARANCE}
+            element={<GachaAppearancePage />}
           ></Route>
         </Routes>
       </HashRouter>

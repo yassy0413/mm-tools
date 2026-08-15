@@ -13,6 +13,7 @@ type WorldData = {
   groupMap: Record<number, number[]>
   // worldId to groupId
   worldMap: Record<number, number>
+  globalGvgGroupIds: Set<number>
   makeGroupId: (regionId: number, worldId: number) => number
   makeServerName: (worldId: number) => string
 }
@@ -21,6 +22,7 @@ const initialWorldData: WorldData = {
   regionMap: {},
   groupMap: {},
   worldMap: {},
+  globalGvgGroupIds: new Set(),
   makeGroupId: () => 0,
   makeServerName: () => '',
 }
@@ -53,8 +55,12 @@ export function WorldProvider({ children }: PropsWithChildren) {
 
       const groupMap: Record<number, number[]> = {}
       const worldMap: Record<number, number> = {}
+      const globalGvgGroupIds = new Set<number>()
       for (const group of wgroups.data) {
         groupMap[group.group_id] = group.worlds
+        if (group.globalgvg) {
+          globalGvgGroupIds.add(group.group_id)
+        }
         for (const worldId of group.worlds) {
           worldMap[worldId] = group.group_id
         }
@@ -64,6 +70,7 @@ export function WorldProvider({ children }: PropsWithChildren) {
         regionMap: regionMap,
         groupMap: groupMap,
         worldMap: worldMap,
+        globalGvgGroupIds: globalGvgGroupIds,
         makeGroupId: (regionId: number, worldId: number) => {
           return worldMap[worldId + regionId * 1000] ?? 0
         },

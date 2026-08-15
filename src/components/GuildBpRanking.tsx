@@ -14,6 +14,18 @@ export default function GuildBpRanking() {
   }
 
   const bpList = guildRanking.guildBpRanking
+  const globalGvgGuildGroupMap = guildRanking.globalGvgGuildGroupMap
+  const globalGvgGroupClasses = [
+    styles.globalGvgGroup0,
+    styles.globalGvgGroup1,
+    styles.globalGvgGroup2,
+    styles.globalGvgGroup3,
+  ]
+
+  const cellClassName = (guildId: number) => {
+    const group = globalGvgGuildGroupMap[guildId]
+    return group === undefined ? '' : globalGvgGroupClasses[group]
+  }
   // console.log(bpList)
 
   const onClickCell = (worldId: number, guildId: number, guildName: string) => {
@@ -38,7 +50,7 @@ export default function GuildBpRanking() {
         <tbody>
           {Array.from({ length: 16 }, (_, i) => (
             <tr key={i}>
-              <td>
+              <td className={cellClassName(bpList[i].id)}>
                 <GuildBpRankingCell
                   rank={i + 1}
                   worldId={bpList[i].world_id}
@@ -48,7 +60,7 @@ export default function GuildBpRanking() {
                   onClick={onClickCell}
                 />
               </td>
-              <td>
+              <td className={cellClassName(bpList[i + 16].id)}>
                 <GuildBpRankingCell
                   rank={i + 16 + 1}
                   worldId={bpList[i + 16].world_id}
@@ -58,7 +70,7 @@ export default function GuildBpRanking() {
                   onClick={onClickCell}
                 />
               </td>
-              <td>
+              <td className={cellClassName(bpList[i + 32].id)}>
                 <GuildBpRankingCell
                   rank={i + 32 + 1}
                   worldId={bpList[i + 32].world_id}

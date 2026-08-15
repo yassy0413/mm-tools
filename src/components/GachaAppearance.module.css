@@ -1,0 +1,52 @@
+.gachaAppearance {
+  width: 100%;
+  padding: 0 8px;
+  overflow-x: auto;
+}
+
+.gachaAppearanceTable {
+  width: max-content;
+  margin: 0 auto;
+  border: 1px solid #333;
+  font-size: 0.8rem;
+
+  & th,
+  & td {
+    padding: 6px 10px;
+    border: 1px solid #333;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  & th {
+    color: #26a69a;
+  }
+}
+
+.character {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  min-width: 150px;
+  background: var(--bg);
+  text-align: left !important;
+  vertical-align: middle;
+}
+
+.characterContent {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.characterIcon {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--code-bg);
+}
+
+.period {
+  line-height: 1rem;
+}

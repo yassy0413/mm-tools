@@ -28,3 +28,37 @@
   text-align: center;
   vertical-align: middle;
 }
+
+.globalGvgGroup0 {
+  background: #f4faff;
+}
+
+.globalGvgGroup1 {
+  background: #f6fbf3;
+}
+
+.globalGvgGroup2 {
+  background: #fffaf1;
+}
+
+.globalGvgGroup3 {
+  background: #fcf5f8;
+}
+
+@media (prefers-color-scheme: dark) {
+  .globalGvgGroup0 {
+    background: #1b2630;
+  }
+
+  .globalGvgGroup1 {
+    background: #202a20;
+  }
+
+  .globalGvgGroup2 {
+    background: #2c281d;
+  }
+
+  .globalGvgGroup3 {
+    background: #2c2027;
+  }
+}

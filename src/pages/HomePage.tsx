@@ -27,7 +27,16 @@ export default function HomePage() {
         <Links />
       </section>
 
-      <div className={styles.homePageFooter}></div>
+      <footer className={styles.homePageFooter}>
+        Data Source:{' '}
+        <a
+          href="https://mentemori.icu/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          mentemori.icu
+        </a>
+      </footer>
     </>
   )
 }

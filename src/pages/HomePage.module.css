@@ -1,5 +1,7 @@
 .homePageFooter {
-  margin-bottom: 100px;
+  margin: 60px 0 100px;
+  text-align: center;
+  font-size: 0.8rem;
 }
 
 .sectionTitle {
