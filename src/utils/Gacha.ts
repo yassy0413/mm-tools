@@ -32,6 +32,8 @@ const masterCache = new TtlCache<unknown>((x) => `gacha_${x}`)
 const MASTER_BASE_URL =
   'https://raw.githubusercontent.com/ScobraCK/MementoMori-data/main/Master'
 
+const APPEARANCE_START_DATE = '2022-01-01 00:00:00'
+
 const isMoreThanOneDayAgo = (dateTime: string) => {
   const startTime = Date.parse(`${dateTime.replace(' ', 'T')}+09:00`)
   return startTime < Date.now() - 24 * 60 * 60 * 1000
@@ -80,6 +82,7 @@ export default class Gacha {
       if (
         !characterId ||
         !characterMap.has(characterId) ||
+        gachaCase.StartTimeFixJST < APPEARANCE_START_DATE ||
         !isMoreThanOneDayAgo(gachaCase.StartTimeFixJST)
       ) {
         continue

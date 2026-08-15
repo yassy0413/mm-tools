@@ -24,7 +24,7 @@ export default function MoreTools() {
         バトルリーグ使用キャラランキング
       </Link>
       <Link to={ROUTE.GACHA_APPEARANCE} className="btn waves-effect waves-light">
-        ガチャ登場日
+        ピックアップガチャ登場日
       </Link>
     </div>
   )

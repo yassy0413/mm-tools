@@ -10,7 +10,7 @@ export default function GachaAppearancePage() {
 
   return (
     <>
-      <Header title="ガチャ登場日" />
+      <Header title="ピックアップガチャ登場日" />
       <GachaAppearanceProvider>
         <GachaAppearanceFilter characterName={characterName} />
         <GachaAppearance characterName={characterName} />
