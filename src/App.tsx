@@ -8,11 +8,13 @@ import EquipmentComparePage from './pages/EquipmentComparePage'
 import PlayerBpRankingPage from './pages/PlayerBpRankingPage'
 import BattleLeagueCharacterRankingPage from './pages/BattleLeagueCharacterRankingPage'
 import GachaAppearancePage from './pages/GachaAppearancePage'
+import AnalyticsPageView from './components/AnalyticsPageView'
 
 function App() {
   return (
     <>
       <HashRouter>
+        <AnalyticsPageView />
         <Routes>
           <Route path={ROUTE.HOME} element={<HomePage />}></Route>
           <Route
