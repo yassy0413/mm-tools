@@ -1,10 +1,18 @@
 import styles from './Links.module.css'
+import cpToolsBanner from '../assets/link_cptools.webp'
 import link_weapon from '../assets/link_weapon.png'
 import link_bp_rank from '../assets/link_bp_rank.png'
 
 export default function Links() {
   return (
     <div className="wrapper">
+      <figure className={styles.linkCard}>
+        <a href="https://palmjoy.github.io/CPTools/ja/" target="_blank" rel="noopener">
+          <img src={cpToolsBanner} alt="CPTools 公式サイトへ" />
+        </a>
+        <figcaption className={styles.caption}>個人で開発しているデスクトップ用のツールです。PC作業の気分転換にどうぞ</figcaption>
+      </figure>
+
       <div id="link_weapon" className={styles.linkCard}>
         <a
           href="https://docs.google.com/spreadsheets/d/15bxBeoWfO4R1b1u5OlohpwCsZLmWEUOaXwrsT9h0eYg/edit?gid=1002246187#gid=1002246187"

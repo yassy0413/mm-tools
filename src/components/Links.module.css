@@ -14,3 +14,13 @@
 .youtubeFrame {
   border: 0;
 }
+
+.linkCard:has(.caption) {
+  container-type: inline-size;
+}
+
+.caption {
+  margin-top: 6px;
+  font-size: min(0.875rem, 2.55cqi);
+  white-space: nowrap;
+}
